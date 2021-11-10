@@ -1,3 +1,7 @@
+# Pak Raps
+
+A website that displays Pakuro's songs with the lyrics and their meaning.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
