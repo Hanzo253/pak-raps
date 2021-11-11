@@ -70,3 +70,22 @@ Default: 9px
   margin: 3.6rem;
   width: 100%;
 }
+
+/***************************/
+/* SONG LIST */
+/***************************/
+
+.choose-song-text {
+  display: inline-block;
+  font-size: 2.4rem;
+  margin-bottom: 3.2rem;
+}
+
+.song-list .song {
+  font-size: 2rem;
+  margin: 2rem;
+}
+
+/* .song:hover {
+  color: #555;
+} */
