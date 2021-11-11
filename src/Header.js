@@ -2,11 +2,11 @@ import React from "react";
 
 const Header = () => {
   return (
-    <React.Fragment>
+    <div>
       <header className="header">
         <h1 className="title">Pak's Raps</h1>
       </header>
-    </React.Fragment>
+    </div>
   );
 };
 
