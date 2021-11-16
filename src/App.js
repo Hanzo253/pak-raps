@@ -1,7 +1,6 @@
 import "./styles.css";
 import Header from "./Header";
 import SongList from "./SongList";
-import Lyrics from "./Lyrics";
 
 function App() {
   return (
