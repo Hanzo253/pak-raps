@@ -3,7 +3,6 @@ import { useState } from "react";
 import Lyrics from "./Lyrics";
 
 function App() {
-  // const [returnToList, setReturnToList] = useState(true);
   const [showSongList, setShowSongList] = useState(true);
   const [songs, setSongs] = useState([
     {
@@ -87,6 +86,8 @@ function App() {
   ]);
   const [songsIndex, setSongsIndex] = useState(0);
 
+  // const [showMenu, setShowMenu] = useState(false);
+  
   const handleClick = (id) => {
     setShowSongList(false);
     console.log("Id: " + id);
@@ -102,9 +103,9 @@ function App() {
     setShowSongList(true);
   };
 
-  // const returnToSongList = () => {
-  //   setReturnToList(true);
-  // };
+  // const navMenu = () => {
+  //   setShowMenu(true);
+  // }
 
   return (
     <div>
