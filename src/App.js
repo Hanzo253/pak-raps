@@ -2,6 +2,20 @@ import "./styles.css";
 import { useState } from "react";
 import Lyrics from "./Lyrics";
 
+import SaintPak from "./songs/pakrap-1.mp3";
+import PakTeaching from "./songs/pakrap-2.mp3";
+import AsToldByPak from "./songs/pakrap-3.mp3";
+import PakTruth from "./songs/pakrap-4.mp3";
+import Seriesly from "./songs/pakrap-5.mp3";
+import Pakking from "./songs/pakrap-6.mp3";
+import PakPoetry from "./songs/pakrap-7.mp3";
+import ShootingMyShot from "./songs/pakrap-8.mp3";
+import RockingThePak from "./songs/pakrap-9.mp3";
+import WhoThePak from "./songs/pakrap-10.mp3";
+import PakGotSome from "./songs/pakrap-11.mp3";
+import PakSnappin from "./songs/pakrap-12.mp3";
+import PakView from "./songs/pakrap-13.mp3";
+
 function App() {
   const [showSongList, setShowSongList] = useState(true);
   const [songs, setSongs] = useState([
@@ -86,13 +100,56 @@ function App() {
   ]);
   const [songsIndex, setSongsIndex] = useState(0);
 
+  const [currentSong, setCurrentSong] = useState("");
+
   // const [showMenu, setShowMenu] = useState(false);
-  
+
   const handleClick = (id) => {
     setShowSongList(false);
-    console.log("Id: " + id);
     setSongsIndex(id);
-    console.log("This is the index: " + songsIndex);
+    switch (id) {
+      case 1:
+        setCurrentSong(SaintPak);
+        break;
+      case 2:
+        setCurrentSong(PakTeaching);
+        break;
+      case 3:
+        setCurrentSong(AsToldByPak);
+        break;
+      case 4:
+        setCurrentSong(PakTruth);
+        break;
+      case 5:
+        setCurrentSong(Seriesly);
+        break;
+      case 6:
+        setCurrentSong(Pakking);
+        break;
+      case 7:
+        setCurrentSong(PakPoetry);
+        break;
+      case 8:
+        setCurrentSong(ShootingMyShot);
+        break;
+      case 9:
+        setCurrentSong(RockingThePak);
+        break;
+      case 10:
+        setCurrentSong(WhoThePak);
+        break;
+      case 11:
+        setCurrentSong(PakGotSome);
+        break;
+      case 12:
+        setCurrentSong(PakSnappin);
+        break;
+      case 13:
+        setCurrentSong(PakView);
+        break;
+      default:
+        alert("Not part of the song list");
+    }
   };
 
   const returnList = () => {
@@ -108,7 +165,7 @@ function App() {
   // }
 
   return (
-    <div>
+    <div className="app">
       <header className="header">
         <button className="nav-btn">
           <svg
@@ -144,21 +201,6 @@ function App() {
             Pick a rap to listen to and see the lyrics.
           </strong>
         )}
-        {/* <ol className="song-list">
-        <li className="song">Saint Pak</li>
-        <li className="song">Pak teaching kids how to rap</li>
-        <li className="song">As told by Pakuro</li>
-        <li className="song">Pak's truth</li>
-        <li className="song">Seriesly</li>
-        <li className="song">Pakking</li>
-        <li className="song">Pak's Poetry</li>
-        <li className="song">Shooting my shot</li>
-        <li className="song">Rocking the Pak</li>
-        <li className="song">Who the Pak is this?</li>
-        <li className="song">Pak got something to say</li>
-        <li className="song">Pak Snapping with the Rappin</li>
-        <li className="song">Taka Response</li>
-      </ol> */}
         <ol className="song-list">
           {showSongList &&
             songs.map((song) => (
@@ -172,12 +214,16 @@ function App() {
             ))}
         </ol>
         {!showSongList && <Lyrics songs={songs} index={songsIndex} />}
-        {!showSongList && (
-          <button onClick={() => returnList()} className="return">
-            Return to Song List
-          </button>
-        )}
       </section>
+      {!showSongList && (
+        <div className="player-container">
+          <div className="music-player">
+            <audio controls>
+              <source src={currentSong} type="audio/mpeg"></source>
+            </audio>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

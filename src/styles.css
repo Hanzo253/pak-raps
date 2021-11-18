@@ -163,4 +163,19 @@ Default: 9px
 
 .lyrics-page {
   white-space: pre-wrap;
+  padding-bottom: 12.8rem;
+}
+
+/***************************/
+/* MUSIC PLAYER */
+/***************************/
+
+.player-container {
+  position: relative;
+}
+
+.music-player {
+  position: fixed;
+  bottom: 5rem;
+  left: 3.5rem;
 }
