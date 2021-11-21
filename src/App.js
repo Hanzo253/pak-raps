@@ -1,6 +1,7 @@
 import "./styles.css";
 import { useState } from "react";
 import Lyrics from "./Lyrics";
+import MusicPlayer from "./MusicPlayer";
 
 import SaintPak from "./songs/pakrap-1.mp3";
 import PakTeaching from "./songs/pakrap-2.mp3";
@@ -216,13 +217,11 @@ function App() {
         {!showSongList && <Lyrics songs={songs} index={songsIndex} />}
       </section>
       {!showSongList && (
-        <div className="player-container">
-          <div className="music-player">
-            <audio controls>
-              <source src={currentSong} type="audio/mpeg"></source>
-            </audio>
-          </div>
-        </div>
+        <MusicPlayer
+          currentSong={currentSong}
+          songs={songs}
+          index={songsIndex}
+        />
       )}
     </div>
   );
