@@ -1,7 +1,8 @@
 import "./styles.css";
 import { useState } from "react";
 import Lyrics from "./Lyrics";
-import MusicPlayer from "./MusicPlayer";
+import AudioPlayer from "react-h5-audio-player";
+import "react-h5-audio-player/lib/styles.css";
 
 import SaintPak from "./songs/pakrap-1.mp3";
 import PakTeaching from "./songs/pakrap-2.mp3";
@@ -42,7 +43,7 @@ function App() {
       id: 4,
       title: "Pak's truth",
       lyrics:
-        "Nigga feel your heart,see a soul in there?,and I know most don't care,but I still love you even when they didn't,I still was with you when they wasn't,I still give you my all even when I couldn't,see I had to give them my all just to show that time will pass,these niggas want to see me crash,I just turned them all to ash,cause I wanna see them burn,cause niggas will never learn,until they feel the fire,and my brain is wired,I rap hard but never get tired,I'm energized,I'm very wise,know that's all lies,cause I just go through this life and I learn all my lessons,I feel like a king cause I once was a peasant,niggas think they get me cause I justifying-ly wrecked them,but I never ever wrecked them,my money keeps a-mounting,the way that I'm rapping,people say that it's astounding,but they don't really under the way that I'm sounding,sometimes we gotta look at this and realize that we can go around them,didn't even plan it,niggas in the chat screamin like they wanna panic,I be feeling like my soul is so filled with anguish,that I don't wanna get angry,I just wanna feel,how do I get away from this pain,I wanna heal",
+        "Nigga feel your heart,see a soul in there?,and I know most don't care,but I still love you even when they didn't,I still was with you when they wasn't,I still give you my all even when I couldn't,see I had to give them my all just to show that time will pass,these niggas want to see me crash,I just turned them all to ash,cause I wanna see them burn,cause niggas will never learn,until they feel the fire,and my brain is wired,I rap hard but never get tired,I'm energized,I'm very wise,know that's all lies,cause I just go through this life and I learn all my lessons,I feel like a king cause I once was a peasant,niggas think they get me cause I justifying-ly wrecked them,but I never ever wrecked them,my money keeps a-mounting,the way that I'm rapping,people say that it's astounding,but they don't really understand the way that I'm sounding,sometimes we gotta look at this and realize that we can go around them,didn't even plan it,niggas in the chat screamin like they wanna panic,I be feeling like my soul is so filled with anguish,that I don't wanna get angry,I just wanna feel,how do I get away from this pain,I wanna heal",
     },
     {
       id: 5,
@@ -217,10 +218,13 @@ function App() {
         {!showSongList && <Lyrics songs={songs} index={songsIndex} />}
       </section>
       {!showSongList && (
-        <MusicPlayer
-          currentSong={currentSong}
-          songs={songs}
-          index={songsIndex}
+        <AudioPlayer
+          src={currentSong}
+          onPlay={(e) => console.log("onPlay")}
+          header={songs[songsIndex - 1].title + "\n\nPakuro"}
+          customAdditionalControls={[]}
+          customVolumeControls={[]}
+          className="music-player"
         />
       )}
     </div>
