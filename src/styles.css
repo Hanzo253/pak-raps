@@ -25,7 +25,7 @@ Paragraph Default: 1.6
 1px
 
 - SPACING SYSTEM (px)
-2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128 / 140 / 200
 
 --- COLORS:
 
@@ -163,47 +163,20 @@ Default: 9px
 
 .lyrics-page {
   white-space: pre-wrap;
-  padding-bottom: 12.8rem;
+  padding-bottom: 20rem;
 }
 
 /***************************/
 /* MUSIC PLAYER */
 /***************************/
 
-.player-container {
-  position: fixed;
-  bottom: 5rem;
-  left: 3.5rem;
-  max-width: 350px;
-  border-radius: 20px;
-  padding: 24px;
-  box-shadow: 0 28px 28px rgba(0, 0, 0, 0.2);
-  margin: auto;
-  background-color: #00aeb0;
-}
-
 .music-player {
-  /* position: fixed;
-  bottom: 5rem;
-  left: 3.5rem; */
+  position: fixed;
+  bottom: 4rem;
   text-align: center;
   z-index: 1;
-  position: relative;
-}
-
-.title {
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-
-.play {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.pause {
-  background: none;
-  border: none;
-  cursor: pointer;
+  margin: auto;
+  font-size: 1.6rem;
+  font-weight: 500;
+  white-space: pre-wrap;
 }
