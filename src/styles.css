@@ -92,14 +92,14 @@ Default: 9px
 }
 
 .nav-btn {
-  position: absolute;
-  left: 0;
+  /* position: absolute; */
+  /* left: 0;
   margin-left: 2rem;
-  margin-top: 3px;
-  border: none;
-  background: none;
-  cursor: pointer;
-  font-weight: 700;
+  margin-top: 10px; */
+  /* border: none;
+  background: none; */
+  /* cursor: pointer; */
+  /* font-weight: 700; */
 }
 
 /* STICKY NAVIGATION */

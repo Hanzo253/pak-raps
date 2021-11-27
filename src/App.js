@@ -1,8 +1,13 @@
 import "./styles.css";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Lyrics from "./Lyrics";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
+
+import { ThemeProvider } from "styled-components";
+import { theme } from "./theme";
+import FocusLock from "react-focus-lock";
+import { Burger, Menu } from "./components";
 
 import SaintPak from "./songs/pakrap-1.mp3";
 import PakTeaching from "./songs/pakrap-2.mp3";
@@ -106,6 +111,10 @@ function App() {
 
   // const [showMenu, setShowMenu] = useState(false);
 
+  const [open, setOpen] = useState(false);
+  const node = useRef();
+  const menuId = "main-menu";
+
   const handleClick = (id) => {
     setShowSongList(false);
     setSongsIndex(id);
@@ -169,7 +178,7 @@ function App() {
   return (
     <div className="app">
       <header className="header">
-        <button className="nav-btn">
+        {/* <button className="nav-btn">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -183,7 +192,15 @@ function App() {
               d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
             />
           </svg>
-        </button>
+        </button> */}
+        <ThemeProvider theme={theme}>
+          <div ref={node}>
+            <FocusLock disabled={!open}>
+              <Burger open={open} setOpen={setOpen} aria-controls={menuId} />
+              <Menu open={open} setOpen={setOpen} id={menuId} />
+            </FocusLock>
+          </div>
+        </ThemeProvider>
         <a href="#" className="title-logo" onClick={() => returnList()}>
           Pak's Raps
         </a>
