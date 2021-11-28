@@ -9,6 +9,7 @@ import { theme } from "./theme";
 import FocusLock from "react-focus-lock";
 import { StyledBurger } from "./components/Burger/Burger.styled";
 import { StyledMenu } from "./components/Menu/Menu.styled";
+import { useOnClickOutside } from "./hooks";
 
 import SaintPak from "./songs/pakrap-1.mp3";
 import PakTeaching from "./songs/pakrap-2.mp3";
@@ -110,11 +111,8 @@ function App() {
 
   const [currentSong, setCurrentSong] = useState("");
 
-  // const [showMenu, setShowMenu] = useState(true);
-
   const [open, setOpen] = useState(false);
   const node = useRef();
-  // const menuId = "main-menu";
 
   const isExpanded = open ? true : false;
   const isHidden = open ? true : false;
@@ -122,10 +120,14 @@ function App() {
 
   const [isEnabled, setIsEnabled] = useState(false);
 
-  const handleClick = (id) => {
+  // clicking on a song from song list
+  const handleClickSong = (id) => {
     setShowSongList(false);
-    // setShowMenu(true);
+
+    // sets the index with value of id
     setSongsIndex(id);
+
+    // depending on which song has been chosen, music player will have a song loaded based on the id
     switch (id) {
       case 1:
         setCurrentSong(SaintPak);
@@ -173,20 +175,16 @@ function App() {
     document.querySelector(".burger-menu").classList.add("show");
   };
 
+  // return to the song list
   const returnToList = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
-    // setShowMenu(false);
     setShowSongList(true);
     setOpen(!open);
     document.querySelector(".burger-menu").classList.remove("show");
   };
-
-  // const navMenu = () => {
-  //   setShowMenu(true);
-  // }
 
   useEffect(() => {
     // Pass in the isEnabled state
@@ -219,24 +217,12 @@ function App() {
     }
   };
 
+  // closes burger menu when user clicks outside
+  useOnClickOutside(node, () => setOpen(false));
+
   return (
     <div className="app">
       <header className="header">
-        {/* <button className="nav-btn">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="currentColor"
-            class="bi bi-list"
-            viewBox="0 0 16 16"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
-            />
-          </svg>
-        </button> */}
         <ThemeProvider theme={theme}>
           <div ref={node} className="burger-menu">
             <FocusLock disabled={!open}>
@@ -255,8 +241,6 @@ function App() {
                   Return to Song List
                 </p>
               </StyledMenu>
-              {/* <Burger open={open} setOpen={setOpen} aria-controls={menuId} />
-              <Menu open={open} setOpen={setOpen} id={menuId} /> */}
             </FocusLock>
           </div>
         </ThemeProvider>
@@ -312,7 +296,7 @@ function App() {
               <li
                 key={song.id}
                 className="song"
-                onClick={() => handleClick(song.id)}
+                onClick={() => handleClickSong(song.id)}
               >
                 {song.title}
               </li>

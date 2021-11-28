@@ -7,7 +7,6 @@ const Lyrics = ({ songs, index }) => {
       <p className="song-lyrics">
         {songs[index - 1].lyrics.split(",").join("\n")}
       </p>
-      {/* <p className="song-lyrics">{songId}</p> */}
     </div>
   );
 };
