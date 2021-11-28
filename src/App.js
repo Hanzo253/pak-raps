@@ -111,11 +111,11 @@ function App() {
 
   const [currentSong, setCurrentSong] = useState("");
 
-  const [showMenu, setShowMenu] = useState(true);
+  // const [showMenu, setShowMenu] = useState(true);
 
   const [open, setOpen] = useState(false);
   const node = useRef();
-  const menuId = "main-menu";
+  // const menuId = "main-menu";
 
   const isExpanded = open ? true : false;
   const isHidden = open ? true : false;
@@ -125,7 +125,7 @@ function App() {
 
   const handleClick = (id) => {
     setShowSongList(false);
-    setShowMenu(true);
+    // setShowMenu(true);
     setSongsIndex(id);
     switch (id) {
       case 1:
@@ -170,6 +170,8 @@ function App() {
       default:
         alert("Not part of the song list");
     }
+
+    document.querySelector(".burger-menu").classList.add("show");
   };
 
   const returnToList = () => {
@@ -177,9 +179,10 @@ function App() {
       top: 0,
       behavior: "smooth",
     });
-    setShowMenu(false);
+    // setShowMenu(false);
     setShowSongList(true);
     setOpen(!open);
+    document.querySelector(".burger-menu").classList.remove("show");
   };
 
   // const navMenu = () => {
@@ -236,33 +239,27 @@ function App() {
           </svg>
         </button> */}
         <ThemeProvider theme={theme}>
-          {showMenu && (
-            <div ref={node}>
-              <FocusLock disabled={!open}>
-                <StyledBurger
-                  aria-label="Toggle menu"
-                  aria-expanded={isExpanded}
-                  open={open}
-                  onClick={() => setOpen(!open)}
-                >
-                  <span />
-                  <span />
-                  <span />
-                </StyledBurger>
-                <StyledMenu open={open} aria-hidden={!isHidden}>
-                  <p
-                    href="/"
-                    tabIndex={tabIndex}
-                    onClick={() => returnToList()}
-                  >
-                    Return to Song List
-                  </p>
-                </StyledMenu>
-                {/* <Burger open={open} setOpen={setOpen} aria-controls={menuId} />
+          <div ref={node} className="burger-menu">
+            <FocusLock disabled={!open}>
+              <StyledBurger
+                aria-label="Toggle menu"
+                aria-expanded={isExpanded}
+                open={open}
+                onClick={() => setOpen(!open)}
+              >
+                <span />
+                <span />
+                <span />
+              </StyledBurger>
+              <StyledMenu open={open} aria-hidden={!isHidden}>
+                <p href="/" tabIndex={tabIndex} onClick={() => returnToList()}>
+                  Return to Song List
+                </p>
+              </StyledMenu>
+              {/* <Burger open={open} setOpen={setOpen} aria-controls={menuId} />
               <Menu open={open} setOpen={setOpen} id={menuId} /> */}
-              </FocusLock>
-            </div>
-          )}
+            </FocusLock>
+          </div>
         </ThemeProvider>
         <strong className="title-logo">Pak's Raps</strong>
         <nav className="header-nav">
