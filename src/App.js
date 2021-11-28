@@ -7,7 +7,6 @@ import "react-h5-audio-player/lib/styles.css";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme";
 import FocusLock from "react-focus-lock";
-import { Burger, Menu } from "./components";
 import { StyledBurger } from "./components/Burger/Burger.styled";
 import { StyledMenu } from "./components/Menu/Menu.styled";
 
