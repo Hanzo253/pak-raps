@@ -238,7 +238,7 @@ function App() {
               </StyledBurger>
               <StyledMenu open={open} aria-hidden={!isHidden}>
                 <p href="/" tabIndex={tabIndex} onClick={() => returnToList()}>
-                  Return to Song List
+                  Song List
                 </p>
               </StyledMenu>
             </FocusLock>
