@@ -1,6 +1,6 @@
-# Pak Raps
+# Pak Raps [Working in progress]
 
-A website that displays Pakuro's songs with the lyrics and their meaning.
+A website that shows Pakuro's songs with the lyrics and their meaning.
 
 # Getting Started with Create React App
 
