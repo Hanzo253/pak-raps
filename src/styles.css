@@ -52,10 +52,10 @@ html {
   transition: color var(--transition), background var(--transition);
 }
 
-/* When the darkmode class is applied, set the pseudo element position to 0 */
-/* .darkmode::before {
-  transform: translateX(0);
-} */
+@font-face {
+  font-family: "Bouncy";
+  src: url(./logo-font/BouncyThin.otf) format("opentype");
+}
 
 /***************************/
 /* ROOT */
@@ -101,6 +101,8 @@ html {
   color: #212529;
   margin-top: 1.4rem;
   text-align: center;
+  font-family: "Bouncy", sans-serif;
+  font-weight: 400;
 }
 
 /***************************/
