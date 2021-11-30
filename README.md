@@ -1,6 +1,23 @@
 # Pak Raps [Working in progress]
 
-A website that shows Pakuro's songs with the lyrics and their meaning.
+A website that shows Pakuro's songs with the lyrics and their meaning. I created this website for my good friend John who is also known as Pak/Pakuro. I am in a discord channel that has his past raps, so I decided to make the Pak's Raps website to make it easier for people in the discord to find his raps. It will also be used as a place where he can upload his songs and explain their meanings later on.
+
+Link: https://pakraps.netlify.app/
+
+Current Features:
+
+- Song List
+- Lyrics for the songs
+- Light and Dark Mode
+- Side menu to return to the song list
+- Music player to listen to the song as you are reading the lyrics
+
+Features coming in the future:
+
+- A section for Pak to explain his lyrics like in lyric genius
+- Maybe a page about Pak himself if he wants to
+- Perhaps later, users can create an account and log in to comment on Pak's raps
+- Some more stuff if I can think of any new ideas.
 
 # Getting Started with Create React App
 
