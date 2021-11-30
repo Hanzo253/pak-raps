@@ -104,7 +104,7 @@ function App() {
       id: 13,
       title: "Pak's View (Incomplete)",
       lyrics:
-        "This shit that I got I know some would sit and laugh,But this shit that I got I know some would kill to have,Know my race ain’t over yet,Man this shit has been a marathon,Only competitions is myself cant do comparisons,Whenever you depressed,They tell you pop a pill(in),But For me and my self,That lifestyle was not appealing,I'm just raising the ceiling,Raising the bar,Ever since we were children,We looked up to the stars,Now we shining ain't we?,Gotta stay focused,Even when the world wants us angry,Be jealous of a nigga?,Man that just ain't me,I know that talent comes in many variety,I'm motivated by my brothers,They inspire me,Don't expect the way you love to be reciprocated,Niggas want and need on paper but never participated",
+        "This shit that I got I know some would sit and laugh,But this shit that I got I know some would kill to have,Know my race ain’t over yet,Man this shit has been a marathon,Only competitions is myself cant do comparisons,Whenever you depressed,They tell you pop a pill(in),But For me and my self,That lifestyle was not appealing,I'm just raising the ceiling,Raising the bar,Ever since we were children,We looked up to the stars,Now we shining ain't we?,Gotta stay focused,Even when the world wants us angry,Be jealous of a nigga?,Man that just ain't me,I know that talent comes in many variety,I'm motivated by my brothers,They inspire me,Don't expect the way you love to be reciprocated,Niggas want their name on paper but never participated",
     },
   ]);
   const [songsIndex, setSongsIndex] = useState(0);
