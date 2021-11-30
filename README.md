@@ -1,4 +1,4 @@
-# Pak Raps [Working in progress]
+# Pak's Raps [Working in progress]
 
 A website that shows Pakuro's songs with the lyrics and their meaning. I created this website for my good friend John who is also known as Pak/Pakuro. I am in a discord channel that has his past raps, so I decided to make the Pak's Raps website to make it easier for people in the discord to find his raps. It will also be used as a place where he can upload his songs and explain their meanings later on.
 
