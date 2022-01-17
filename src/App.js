@@ -24,6 +24,7 @@ import WhoThePak from "./songs/pakrap-10.mp3";
 import PakGotSome from "./songs/pakrap-11.mp3";
 import PakSnappin from "./songs/pakrap-12.mp3";
 import PakView from "./songs/pakrap-13.mp3";
+import JustLife from "./songs/pakrap-14.mp3";
 
 function App() {
   const [showSongList, setShowSongList] = useState(true);
@@ -106,6 +107,12 @@ function App() {
       lyrics:
         "This shit that I got I know some would sit and laugh,But this shit that I got I know some would kill to have,Know my race ain’t over yet,Man this shit has been a marathon,Only competitions is myself cant do comparisons,Whenever you depressed,They tell you pop a pill(in),But For me and my self,That lifestyle was not appealing,I'm just raising the ceiling,Raising the bar,Ever since we were children,We looked up to the stars,Now we shining ain't we?,Gotta stay focused,Even when the world wants us angry,Be jealous of a nigga?,Man that just ain't me,I know that talent comes in many variety,I'm motivated by my brothers,They inspire me,Don't expect the way you love to be reciprocated,Niggas want their name on paper but never participated",
     },
+    {
+      id: 14,
+      title: "Just Life. Prod by J Dilla, Mix and Mastered by Insane Sounds",
+      lyrics:
+        "The world took everything she had now she a stipper,I keep on tipping she love it when I tip her,But how much more until she lets me put the tip in,She say it depends,Girl let me dip in,and then im dipping,She say boy you and old fool,How you gonna kick it old school,how you young but an old head,I said,I see where the music gone take me,and imma keep doing even if it dont make me,old head cause im beyond my time wise,and time wise,I aint got time to mess with anything if aint opening up my eyes,No lies,I lie,and think about who created the skies,I lied,say something deep to opening up her thighs,I bribe,False hopes of her wishing to become a bribe,but every nigga know,not to make a hoe a wife,Im just tryna get mine,I know she dont mind,Cause at the end of the day thats just life,,Hook (x2),And I aint trying to sit and pretend,that after tonight we even be friends,Cause our lives,our lies,isn't written allies,But for tonight we just wanna feel Alive,,Indecison,Like circumcision,I got a vision,It has me winning,you aren't in it,and if rap dont work out,I'll probably be an arsonists,Authenthic,It ain't real bars unless you put your all in it,proof that we living awesome,My Awesomeness,Got me wishing that someone would auction this,we all feeling,the deeper they keep pressing,The more we feel the depression,but thats just us Progressin,Remember that diamonds form under the pressuring,So these trials only here to bring out the best in,You,So live your life and serve your purpose no else can,Do,,Hook (x2),And i aint trying to sit and pretend,that after tonight we even be friends,Cause our lives,our lies,isn't written allies,But for tonight we just wanna feel Alive",
+    },
   ]);
   const [songsIndex, setSongsIndex] = useState(0);
 
@@ -167,6 +174,9 @@ function App() {
         break;
       case 13:
         setCurrentSong(PakView);
+        break;
+      case 14:
+        setCurrentSong(JustLife);
         break;
       default:
         alert("Not part of the song list");
