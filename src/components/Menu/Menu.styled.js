@@ -33,6 +33,7 @@ export const StyledMenu = styled.nav`
     }
     &:hover {
       color: ${({ theme }) => theme.primaryHover};
+      cursor: pointer;
     }
   }
 `;

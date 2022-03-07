@@ -162,7 +162,7 @@ html {
   position: relative;
   margin: auto;
   cursor: pointer;
-  background: var(--foreground);
+  background: var(--background);
   transition: background var(--transition);
 }
 
@@ -176,7 +176,7 @@ html {
   top: 3px;
   z-index: 2;
   transform: translate(0);
-  background: var(--background);
+  background: var(--foreground);
   transition: transform var(--transition), background var(--transition);
 }
 
@@ -199,7 +199,7 @@ html {
 }
 
 .bi-moon-fill {
-  fill: var(--background);
+  fill: var(--foreground);
   height: 1.6rem;
   width: 1.6rem;
   z-index: 0;
