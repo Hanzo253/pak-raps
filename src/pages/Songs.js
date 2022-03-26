@@ -1,38 +1,33 @@
-import "./styles.css";
+import React from "react";
+import "../styles.css";
 import { useState, useRef, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Lyrics from "./Lyrics";
+import Lyrics from "../Lyrics";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 
 import { ThemeProvider } from "styled-components";
-import { theme } from "./theme";
+import { theme } from "../theme";
 import FocusLock from "react-focus-lock";
-import { StyledBurger } from "./components/Burger/Burger.styled";
-import { StyledMenu } from "./components/Menu/Menu.styled";
-import { useOnClickOutside } from "./hooks";
+import { StyledBurger } from "../components/Burger/Burger.styled";
+import { StyledMenu } from "../components/Menu/Menu.styled";
+import { useOnClickOutside } from "../hooks";
 
-import SaintPak from "./songs/pakrap-1.mp3";
-import PakTeaching from "./songs/pakrap-2.mp3";
-import AsToldByPak from "./songs/pakrap-3.mp3";
-import PakTruth from "./songs/pakrap-4.mp3";
-import Seriesly from "./songs/pakrap-5.mp3";
-import Pakking from "./songs/pakrap-6.mp3";
-import PakPoetry from "./songs/pakrap-7.mp3";
-import ShootingMyShot from "./songs/pakrap-8.mp3";
-import RockingThePak from "./songs/pakrap-9.mp3";
-import WhoThePak from "./songs/pakrap-10.mp3";
-import PakGotSome from "./songs/pakrap-11.mp3";
-import PakSnappin from "./songs/pakrap-12.mp3";
-import PakView from "./songs/pakrap-13.mp3";
-import JustLife from "./songs/pakrap-14.mp3";
+import SaintPak from "../songs/pakrap-1.mp3";
+import PakTeaching from "../songs/pakrap-2.mp3";
+import AsToldByPak from "../songs/pakrap-3.mp3";
+import PakTruth from "../songs/pakrap-4.mp3";
+import Seriesly from "../songs/pakrap-5.mp3";
+import Pakking from "../songs/pakrap-6.mp3";
+import PakPoetry from "../songs/pakrap-7.mp3";
+import ShootingMyShot from "../songs/pakrap-8.mp3";
+import RockingThePak from "../songs/pakrap-9.mp3";
+import WhoThePak from "../songs/pakrap-10.mp3";
+import PakGotSome from "../songs/pakrap-11.mp3";
+import PakSnappin from "../songs/pakrap-12.mp3";
+import PakView from "../songs/pakrap-13.mp3";
+import JustLife from "../songs/pakrap-14.mp3";
 
-import Home from "./pages/Home";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
-import Songs from "./pages/Songs";
-
-function App() {
+const Songs = () => {
   const [showSongList, setShowSongList] = useState(true);
   const [songs, setSongs] = useState([
     {
@@ -237,113 +232,101 @@ function App() {
   useOnClickOutside(node, () => setOpen(false));
 
   return (
-    <Router>
-      <div className="app">
-        {/* <header className="header">
-          <ThemeProvider theme={theme}>
-            <div ref={node} className="burger-menu">
-              <FocusLock disabled={!open}>
-                <StyledBurger
-                  aria-label="Toggle menu"
-                  aria-expanded={isExpanded}
-                  open={open}
-                  onClick={() => setOpen(!open)}
+    <div className="songs">
+      <header className="header">
+        <ThemeProvider theme={theme}>
+          <div ref={node} className="burger-menu">
+            <FocusLock disabled={!open}>
+              <StyledBurger
+                aria-label="Toggle menu"
+                aria-expanded={isExpanded}
+                open={open}
+                onClick={() => setOpen(!open)}
+              >
+                <span />
+                <span />
+                <span />
+              </StyledBurger>
+              <StyledMenu open={open} aria-hidden={!isHidden}>
+                <p href="/" tabIndex={tabIndex} onClick={() => returnToList()}>
+                  Song List
+                </p>
+              </StyledMenu>
+            </FocusLock>
+          </div>
+        </ThemeProvider>
+        <strong className="title-logo">Pak's Raps</strong>
+        <nav className="header-nav">
+          <label className="toggle-wrapper" htmlFor="toggle">
+            <div className={`toggle ${isEnabled ? "enabled" : "disabled"}`}>
+              <span className="hidden">
+                {isEnabled ? "Enable Light Mode" : "Enable Dark Mode"}
+              </span>
+              <div className="icons">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-sun-fill"
+                  viewBox="0 0 16 16"
                 >
-                  <span />
-                  <span />
-                  <span />
-                </StyledBurger>
-                <StyledMenu open={open} aria-hidden={!isHidden}>
-                  <p
-                    href="/"
-                    tabIndex={tabIndex}
-                    onClick={() => returnToList()}
-                  >
-                    Song List
-                  </p>
-                </StyledMenu>
-              </FocusLock>
-            </div>
-          </ThemeProvider>
-          <strong className="title-logo">Pak's Raps</strong>
-          <nav className="header-nav">
-            <label className="toggle-wrapper" htmlFor="toggle">
-              <div className={`toggle ${isEnabled ? "enabled" : "disabled"}`}>
-                <span className="hidden">
-                  {isEnabled ? "Enable Light Mode" : "Enable Dark Mode"}
-                </span>
-                <div className="icons">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-sun-fill"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
-                  </svg>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-moon-fill"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z" />
-                  </svg>
-                </div>
-                <input
-                  id="toggle"
-                  name="toggle"
-                  type="checkbox"
-                  checked={isEnabled}
-                  onClick={toggleState}
-                />
+                  <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-moon-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z" />
+                </svg>
               </div>
-            </label>
-          </nav>
-        </header>
-        <section className="list-section container">
-          {showSongList && (
-            <strong className="choose-song-text">
-              Pick a rap to listen to and see the lyrics.
-            </strong>
-          )}
-          <ol className="song-list">
-            {showSongList &&
-              songs.map((song) => (
-                <li
-                  key={song.id}
-                  className="song"
-                  onClick={() => handleClickSong(song.id)}
-                >
-                  {song.title}
-                </li>
-              ))}
-          </ol>
-          {!showSongList && <Lyrics songs={songs} index={songsIndex} />}
-        </section>
-        {!showSongList && (
-          <AudioPlayer
-            src={currentSong}
-            onPlay={(e) => console.log("onPlay")}
-            header={songs[songsIndex - 1].title + "\n\nPakuro"}
-            customAdditionalControls={[]}
-            customVolumeControls={[]}
-            className="music-player"
-          />
-        )} */}
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/register" element={<Register />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/songs" element={<Songs />}></Route>
-        </Routes>
-      </div>
-    </Router>
+              <input
+                id="toggle"
+                name="toggle"
+                type="checkbox"
+                checked={isEnabled}
+                onClick={toggleState}
+              />
+            </div>
+          </label>
+        </nav>
+      </header>
+      <section className="list-section container">
+        {showSongList && (
+          <strong className="choose-song-text">
+            Pick a rap to listen to and see the lyrics.
+          </strong>
+        )}
+        <ol className="song-list">
+          {showSongList &&
+            songs.map((song) => (
+              <li
+                key={song.id}
+                className="song"
+                onClick={() => handleClickSong(song.id)}
+              >
+                {song.title}
+              </li>
+            ))}
+        </ol>
+        {!showSongList && <Lyrics songs={songs} index={songsIndex} />}
+      </section>
+      {!showSongList && (
+        <AudioPlayer
+          src={currentSong}
+          onPlay={(e) => console.log("onPlay")}
+          header={songs[songsIndex - 1].title + "\n\nPakuro"}
+          customAdditionalControls={[]}
+          customVolumeControls={[]}
+          className="music-player"
+        />
+      )}
+    </div>
   );
-}
+};
 
-export default App;
+export default Songs;
