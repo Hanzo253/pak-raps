@@ -248,7 +248,12 @@ const Songs = () => {
                 <span />
               </StyledBurger>
               <StyledMenu open={open} aria-hidden={!isHidden}>
-                <p href="/" tabIndex={tabIndex} onClick={() => returnToList()}>
+                <p
+                  href="/"
+                  tabIndex={tabIndex}
+                  onClick={() => returnToList()}
+                  className="nav-item"
+                >
                   Song List
                 </p>
               </StyledMenu>
