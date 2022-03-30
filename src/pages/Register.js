@@ -121,6 +121,44 @@ const Register = () => {
           </label>
         </nav>
       </header>
+      <section className="registration-section">
+        <h1 className="heading">Create Account</h1>
+        <form action="" className="registration-form">
+          <div class="row">
+            <div class="col-25">
+              <label className="register-label" for="fname">
+                Email Address
+              </label>
+            </div>
+            <div class="col-75">
+              <input
+                type="text"
+                id="fname"
+                name="firstname"
+                placeholder="Your name.."
+                className="email-input"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label className="register-label" for="lname">
+                Password
+              </label>
+            </div>
+            <div class="col-75">
+              <input
+                type="text"
+                id="lname"
+                name="lastname"
+                placeholder="Your last name.."
+                className="password-input"
+              />
+            </div>
+          </div>
+          <input type="submit" value="Submit" className="submit-btn" />
+        </form>
+      </section>
     </div>
   );
 };

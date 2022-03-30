@@ -79,6 +79,11 @@ html {
   max-width: 120rem;
 }
 
+.heading {
+  font-size: 3rem;
+  text-align: center;
+}
+
 /***************************/
 /* HEADER */
 /***************************/
@@ -211,6 +216,107 @@ html {
   height: 1.6rem;
   width: 1.6rem;
   z-index: 0;
+}
+
+/***************************/
+/* REGISTRATION */
+/***************************/
+
+.registration-section {
+  height: 80vh;
+  margin-top: 8rem;
+}
+
+.registration-form {
+  margin: 4.8rem auto;
+  width: 50%;
+}
+
+.email-input,
+.password-input {
+  box-shadow: inset #abacaf 0 0 0 2px;
+  border: 0;
+  background-color: #f8f9fa;
+  appearance: none;
+  width: 100%;
+  position: relative;
+  border-radius: 3px;
+  padding: 9px 12px;
+  line-height: 1.4;
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  font-weight: 400;
+  height: 40px;
+  transition: all 0.2s ease;
+}
+
+.email-input:hover,
+.password-input:hover {
+  box-shadow: 0 0 0 0 #fff inset, #56b8b7 0 0 0 2px;
+}
+
+.email-input:focus,
+.password-input:hover {
+  background: #fff;
+  outline: 0;
+  box-shadow: 0 0 0 0 #fff inset, #56b8b7 0 0 0 3px;
+}
+
+.register-label {
+  /* padding: 1rem 1rem 2.4rem 1.6rem; */
+  display: inline-block;
+  font-size: 2rem;
+  margin: 2rem auto;
+}
+
+.submit-btn {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 3px;
+  padding: 12px 24px;
+  border: 0;
+  color: #212529;
+  background: #56b8b7;
+  line-height: 1.15;
+  font-size: 16px;
+  margin: 2rem auto;
+}
+
+.submit-btn:hover {
+  transition: all 0.1s ease;
+  box-shadow: 0 0 0 0 #f8f9fa, 0 0 0 3px #56b8b7;
+  color: #f8f9fa;
+}
+
+/* .col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+} */
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25,
+  .col-75,
+  input[type="submit"] {
+    width: 100%;
+    margin-top: 0;
+  }
 }
 
 /***************************/
