@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles.css";
 import { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 import { ThemeProvider } from "styled-components";
 import { theme } from "../theme";
@@ -9,8 +9,14 @@ import FocusLock from "react-focus-lock";
 import { StyledBurger } from "../components/Burger/Burger.styled";
 import { StyledMenu } from "../components/Menu/Menu.styled";
 import { useOnClickOutside } from "../hooks";
+import { useSignUp } from "../auth/useSignUp.js";
 
 const Register = () => {
+  const [emailAddress, setEmailAddress] = useState("");
+  const [password, setPassword] = useState("");
+  const { error, signup } = useSignUp();
+  const navigate = useNavigate();
+
   const [open, setOpen] = useState(false);
   const node = useRef();
 
@@ -53,6 +59,12 @@ const Register = () => {
 
   // closes burger menu when user clicks outside
   useOnClickOutside(node, () => setOpen(false));
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    signup(emailAddress, password);
+    navigate("/songs", { replace: true });
+  };
 
   return (
     <div className="register">
@@ -123,40 +135,44 @@ const Register = () => {
       </header>
       <section className="registration-section">
         <h1 className="heading">Create Account</h1>
-        <form action="" className="registration-form">
+        <form onSubmit={handleSubmit} className="registration-form">
           <div class="row">
             <div class="col-25">
-              <label className="register-label" for="fname">
+              <label className="register-label" for="email">
                 Email Address
               </label>
             </div>
             <div class="col-75">
               <input
-                type="text"
-                id="fname"
-                name="firstname"
-                placeholder="Your name.."
+                type="email"
+                id="email"
+                name="emailaddress"
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                onChange={(event) => setEmailAddress(event.target.value)}
                 className="email-input"
+                required
               />
             </div>
           </div>
           <div class="row">
             <div class="col-25">
-              <label className="register-label" for="lname">
+              <label className="register-label" for="password">
                 Password
               </label>
             </div>
             <div class="col-75">
               <input
-                type="text"
-                id="lname"
-                name="lastname"
-                placeholder="Your last name.."
+                type="password"
+                id="password"
+                name="password"
+                onChange={(event) => setPassword(event.target.value)}
                 className="password-input"
+                required
               />
             </div>
           </div>
           <input type="submit" value="Submit" className="submit-btn" />
+          {error && <p className="error-message">{error}</p>}
         </form>
       </section>
     </div>

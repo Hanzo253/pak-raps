@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import Lyrics from "../Lyrics";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
+import { useLogOut } from "../auth/useLogOut";
 
 import { ThemeProvider } from "styled-components";
 import { theme } from "../theme";
@@ -183,7 +184,8 @@ const Songs = () => {
         alert("Not part of the song list");
     }
 
-    document.querySelector(".burger-menu").classList.add("show");
+    // document.querySelector(".burger-menu").classList.add("show");
+    // document.querySelector(".burger-logoff-menu").classList.remove("show");
   };
 
   // return to the song list
@@ -194,7 +196,8 @@ const Songs = () => {
     });
     setShowSongList(true);
     setOpen(!open);
-    document.querySelector(".burger-menu").classList.remove("show");
+    // document.querySelector(".burger-menu").classList.remove("show");
+    // document.querySelector(".burger-logoff-menu").classList.add("show");
   };
 
   useEffect(() => {
@@ -231,11 +234,13 @@ const Songs = () => {
   // closes burger menu when user clicks outside
   useOnClickOutside(node, () => setOpen(false));
 
+  const { logout } = useLogOut();
+
   return (
     <div className="songs">
       <header className="header">
         <ThemeProvider theme={theme}>
-          <div ref={node} className="burger-menu">
+          <div ref={node} className="burger-menu show">
             <FocusLock disabled={!open}>
               <StyledBurger
                 aria-label="Toggle menu"
@@ -248,13 +253,23 @@ const Songs = () => {
                 <span />
               </StyledBurger>
               <StyledMenu open={open} aria-hidden={!isHidden}>
+                {!showSongList && (
+                  <p
+                    href="/"
+                    tabIndex={tabIndex}
+                    onClick={() => returnToList()}
+                    className="nav-item"
+                  >
+                    Song List
+                  </p>
+                )}
                 <p
                   href="/"
                   tabIndex={tabIndex}
-                  onClick={() => returnToList()}
+                  onClick={logout}
                   className="nav-item"
                 >
-                  Song List
+                  Log off
                 </p>
               </StyledMenu>
             </FocusLock>
