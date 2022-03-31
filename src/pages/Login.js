@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles.css";
 import { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { ThemeProvider } from "styled-components";
 import { theme } from "../theme";
@@ -9,8 +9,14 @@ import FocusLock from "react-focus-lock";
 import { StyledBurger } from "../components/Burger/Burger.styled";
 import { StyledMenu } from "../components/Menu/Menu.styled";
 import { useOnClickOutside } from "../hooks";
+import { useLogin } from "../auth/useLogin";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { error, login } = useLogin();
+  const navigate = useNavigate();
+
   const [open, setOpen] = useState(false);
   const node = useRef();
 
@@ -53,6 +59,12 @@ const Login = () => {
 
   // closes burger menu when user clicks outside
   useOnClickOutside(node, () => setOpen(false));
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    login(email, password);
+    navigate("/songs", { replace: true });
+  };
 
   return (
     <div className="login">
@@ -121,6 +133,48 @@ const Login = () => {
           </label>
         </nav>
       </header>
+      <section className="registration-section">
+        <h1 className="heading">Login</h1>
+        <form onSubmit={handleSubmit} className="registration-form">
+          <div class="row">
+            <div class="col-25">
+              <label className="register-label" for="email">
+                Email
+              </label>
+            </div>
+            <div class="col-75">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                onChange={(event) => setEmail(event.target.value)}
+                className="email-input"
+                required
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label className="register-label" for="password">
+                Password
+              </label>
+            </div>
+            <div class="col-75">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                onChange={(event) => setPassword(event.target.value)}
+                className="password-input"
+                required
+              />
+            </div>
+          </div>
+          <input type="submit" value="Submit" className="submit-btn" />
+          {error && <p className="error-message">{error}</p>}
+        </form>
+      </section>
     </div>
   );
 };
