@@ -93,7 +93,9 @@ const Login = () => {
             </FocusLock>
           </div>
         </ThemeProvider>
-        <strong className="title-logo">Pak's Raps</strong>
+        <Link to="/" className="title-logo">
+          Pak's Raps
+        </Link>
         <nav className="header-nav">
           <label className="toggle-wrapper" htmlFor="toggle">
             <div className={`toggle ${isEnabled ? "enabled" : "disabled"}`}>
@@ -170,6 +172,14 @@ const Login = () => {
                 required
               />
             </div>
+          </div>
+          <div className="row">
+            <p className="sign-up">
+              Don't have an account?&nbsp;
+              <Link to="/register" className="register-link">
+                Sign up here
+              </Link>
+            </p>
           </div>
           <input type="submit" value="Submit" className="submit-btn" />
           {error && <p className="error-message">{error}</p>}

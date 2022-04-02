@@ -93,7 +93,9 @@ const Register = () => {
             </FocusLock>
           </div>
         </ThemeProvider>
-        <strong className="title-logo">Pak's Raps</strong>
+        <Link to="/" className="title-logo">
+          Pak's Raps
+        </Link>
         <nav className="header-nav">
           <label className="toggle-wrapper" htmlFor="toggle">
             <div className={`toggle ${isEnabled ? "enabled" : "disabled"}`}>
@@ -170,6 +172,14 @@ const Register = () => {
                 required
               />
             </div>
+          </div>
+          <div className="row">
+            <p className="sign-in">
+              Already registered an account?&nbsp;
+              <Link to="/login" className="login-link">
+                Sign in here
+              </Link>
+            </p>
           </div>
           <input type="submit" value="Submit" className="submit-btn" />
           {error && <p className="error-message">{error}</p>}
