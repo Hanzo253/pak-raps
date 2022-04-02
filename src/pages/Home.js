@@ -58,7 +58,7 @@ const Home = () => {
     <div className="home">
       <header className="header">
         <ThemeProvider theme={theme}>
-          <div ref={node} className="burger-home-menu show">
+          <div ref={node} className="burger-home-menu">
             <FocusLock disabled={!open}>
               <StyledBurger
                 aria-label="Toggle menu"
@@ -86,7 +86,7 @@ const Home = () => {
         </Link>
         <nav className="header-nav">
           <ul className="header-nav-list">
-            <li>
+            <li className="register-nav-item">
               <Link
                 to="/register"
                 tabIndex={tabIndex}
@@ -95,7 +95,7 @@ const Home = () => {
                 Register
               </Link>
             </li>
-            <li>
+            <li className="login-nav-item">
               <Link to="/login" tabIndex={tabIndex} className="header-nav-link">
                 Login
               </Link>

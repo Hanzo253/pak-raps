@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import "../styles.css";
 import { useState, useRef, useEffect } from "react";
@@ -159,7 +160,11 @@ const Login = () => {
           <div class="row">
             <div class="col-25">
               <label className="register-label" for="password">
-                Password
+                Password&nbsp;(
+                <a href="#" className="forgot-password">
+                  Forgot password?
+                </a>
+                )
               </label>
             </div>
             <div class="col-75">
