@@ -70,7 +70,7 @@ const Login = () => {
   return (
     <div className="login">
       <header className="header">
-        <ThemeProvider theme={theme}>
+        {/* <ThemeProvider theme={theme}>
           <div ref={node} className="burger-home-menu show">
             <FocusLock disabled={!open}>
               <StyledBurger
@@ -93,7 +93,7 @@ const Login = () => {
               </StyledMenu>
             </FocusLock>
           </div>
-        </ThemeProvider>
+        </ThemeProvider> */}
         <Link to="/" className="title-logo">
           Pak's Raps
         </Link>

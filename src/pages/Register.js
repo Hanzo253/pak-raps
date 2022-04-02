@@ -69,7 +69,7 @@ const Register = () => {
   return (
     <div className="register">
       <header className="header">
-        <ThemeProvider theme={theme}>
+        {/* <ThemeProvider theme={theme}>
           <div ref={node} className="burger-home-menu show">
             <FocusLock disabled={!open}>
               <StyledBurger
@@ -92,7 +92,7 @@ const Register = () => {
               </StyledMenu>
             </FocusLock>
           </div>
-        </ThemeProvider>
+        </ThemeProvider> */}
         <Link to="/" className="title-logo">
           Pak's Raps
         </Link>
