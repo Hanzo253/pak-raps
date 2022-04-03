@@ -33,8 +33,8 @@ Paragraph Default: 1.6
 - SECONDARY: #f8f9fa, #373b3e, #212529
 - GREYS: #495057, #f8f9fa, #f1f3f5, #dee2e6, #343a40
 
-- Tints: #373b3e
-- Shades:
+- Tints: #373b3e, #ffc9c9
+- Shades: #f03e3e
 - Accents:
 
 --- SHADOWS
@@ -257,7 +257,8 @@ html {
 
 .email-input,
 .password-input,
-.username-input {
+.username-input,
+.profile-picture-input {
   box-shadow: inset #abacaf 0 0 0 2px;
   border: 0;
   background-color: #f8f9fa;
@@ -276,13 +277,15 @@ html {
 
 .email-input:hover,
 .password-input:hover,
-.username-input:hover {
+.username-input:hover,
+.profile-picture-input:hover {
   box-shadow: 0 0 0 0 #fff inset, #56b8b7 0 0 0 2px;
 }
 
 .email-input:focus,
 .password-input:focus,
-.username-input:focus {
+.username-input:focus,
+.profile-picture-input:hover {
   background: #fff;
   outline: 0;
   box-shadow: 0 0 0 0 #fff inset, #56b8b7 0 0 0 3px;
@@ -293,6 +296,16 @@ html {
   display: inline-block;
   font-size: 2rem;
   margin: 2rem auto;
+}
+
+.file-error {
+  color: #f03e3e;
+  background-color: #ffc9c9;
+  border: 2px solid #f03e3e;
+  border-radius: 3px;
+  padding: 1rem;
+  margin-top: 1rem;
+  font-size: 2rem;
 }
 
 .forgot-password {
@@ -389,6 +402,12 @@ html {
 
 .return {
   margin-top: 2rem;
+}
+
+.user {
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #212529;
 }
 
 /***************************/

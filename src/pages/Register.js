@@ -18,6 +18,8 @@ const Register = () => {
   const [userName, setUserName] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
+  const [profileImage, setProfileImage] = useState(null);
+  const [imageError, setImageError] = useState(null);
   const { error, signup } = useSignUp();
 
   const [open, setOpen] = useState(false);
@@ -62,6 +64,31 @@ const Register = () => {
 
   // closes burger menu when user clicks outside
   useOnClickOutside(node, () => setOpen(false));
+
+  const handleFileChange = (e) => {
+    setProfileImage(null);
+    let uploadedImage = e.target.files[0];
+    console.log(uploadedImage);
+
+    if (!uploadedImage) {
+      setImageError("An image has not been uploaded.");
+      return;
+    }
+
+    if (!uploadedImage.type.includes("image")) {
+      setImageError("This file is not an image type.");
+      return;
+    }
+
+    if (!uploadedImage.size > 100000) {
+      setImageError("Image file size needs to be less than 100kb.");
+      return;
+    }
+
+    setImageError(null);
+    setProfileImage(uploadedImage);
+    console.log("User profile image has been updated.");
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -193,6 +220,24 @@ const Register = () => {
                 required
               />
             </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label className="register-label" for="profile-picture">
+                Profile Picture
+              </label>
+            </div>
+            <div class="col-75">
+              <input
+                type="file"
+                id="profile-picture"
+                name="profile-picture"
+                className="profile-picture-input"
+                onChange={handleFileChange}
+                required
+              />
+            </div>
+            {imageError && <div className="file-error">{imageError}</div>}
           </div>
           <div className="row">
             <p className="sign-in">
