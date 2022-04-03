@@ -11,6 +11,9 @@ import { StyledMenu } from "../components/Menu/Menu.styled";
 import { useOnClickOutside } from "../hooks";
 import { useSignUp } from "../auth/useSignUp.js";
 
+import { auth } from "../firebase/config";
+import { updateProfile } from "firebase/auth";
+
 const Register = () => {
   const [userName, setUserName] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
@@ -62,7 +65,7 @@ const Register = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    signup(emailAddress, password);
+    signup(userName, emailAddress, password);
   };
 
   return (
