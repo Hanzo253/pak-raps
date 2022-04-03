@@ -2,7 +2,7 @@
 import React from "react";
 import "../styles.css";
 import { useState, useRef, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { ThemeProvider } from "styled-components";
 import { theme } from "../theme";
@@ -16,7 +16,6 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { error, login } = useLogin();
-  const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
   const node = useRef();
@@ -64,7 +63,6 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     login(email, password);
-    navigate("/songs", { replace: true });
   };
 
   return (

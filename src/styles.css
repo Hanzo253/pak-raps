@@ -256,7 +256,8 @@ html {
 }
 
 .email-input,
-.password-input {
+.password-input,
+.username-input {
   box-shadow: inset #abacaf 0 0 0 2px;
   border: 0;
   background-color: #f8f9fa;
@@ -274,12 +275,14 @@ html {
 }
 
 .email-input:hover,
-.password-input:hover {
+.password-input:hover,
+.username-input:hover {
   box-shadow: 0 0 0 0 #fff inset, #56b8b7 0 0 0 2px;
 }
 
 .email-input:focus,
-.password-input:hover {
+.password-input:focus,
+.username-input:focus {
   background: #fff;
   outline: 0;
   box-shadow: 0 0 0 0 #fff inset, #56b8b7 0 0 0 3px;

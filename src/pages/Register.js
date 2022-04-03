@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles.css";
 import { useState, useRef, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { ThemeProvider } from "styled-components";
 import { theme } from "../theme";
@@ -12,10 +12,10 @@ import { useOnClickOutside } from "../hooks";
 import { useSignUp } from "../auth/useSignUp.js";
 
 const Register = () => {
+  const [userName, setUserName] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const { error, signup } = useSignUp();
-  const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
   const node = useRef();
@@ -63,7 +63,6 @@ const Register = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     signup(emailAddress, password);
-    navigate("/songs", { replace: true });
   };
 
   return (
@@ -138,6 +137,25 @@ const Register = () => {
       <section className="registration-section">
         <h1 className="heading">Create Account</h1>
         <form onSubmit={handleSubmit} className="registration-form">
+          <div class="row">
+            <div class="col-25">
+              <label className="register-label" for="user-name">
+                Username (minimum length of 6 characters)
+              </label>
+            </div>
+            <div class="col-75">
+              <input
+                type="text"
+                id="user-name"
+                name="username"
+                pattern=".{6,}"
+                title="Six or more characters"
+                onChange={(event) => setUserName(event.target.value)}
+                className="username-input"
+                required
+              />
+            </div>
+          </div>
           <div class="row">
             <div class="col-25">
               <label className="register-label" for="email">
