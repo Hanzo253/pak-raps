@@ -298,6 +298,23 @@ html {
   margin: 2rem auto;
 }
 
+.progress-bar {
+  display: block;
+  font-size: 2rem;
+  margin: 1rem auto 0 auto;
+}
+
+.preview-image {
+  vertical-align: middle;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  border-width: 0.5rem;
+  margin: 1rem auto 0 auto;
+  /* border-color: #212529;
+  border-style: outset; */
+}
+
 .file-error {
   color: #f03e3e;
   background-color: #ffc9c9;
@@ -405,9 +422,15 @@ html {
 }
 
 .user {
-  font-size: 1.4rem;
   cursor: pointer;
-  color: #212529;
+}
+
+.profile-image {
+  vertical-align: middle;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border-width: 0.5rem;
 }
 
 /***************************/

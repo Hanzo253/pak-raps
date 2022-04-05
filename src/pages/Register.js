@@ -11,15 +11,23 @@ import { StyledMenu } from "../components/Menu/Menu.styled";
 import { useOnClickOutside } from "../hooks";
 import { useSignUp } from "../auth/useSignUp.js";
 
-import { auth } from "../firebase/config";
-import { updateProfile } from "firebase/auth";
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytesResumable,
+} from "firebase/storage";
 
 const Register = () => {
   const [userName, setUserName] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const [profileImage, setProfileImage] = useState(null);
-  const [imageError, setImageError] = useState(null);
+  // const [fileUploaded, setFileUploaded] = useState(false);
+  // const [uploadState, setUploadState] = useState("Uploading image");
+  const [profileImageURL, setProfileImageURL] = useState(null);
+  // const [progress, setProgress] = useState(0);
+  // const [imageError, setImageError] = useState(null);
   const { error, signup } = useSignUp();
 
   const [open, setOpen] = useState(false);
@@ -65,33 +73,117 @@ const Register = () => {
   // closes burger menu when user clicks outside
   useOnClickOutside(node, () => setOpen(false));
 
-  const handleFileChange = (e) => {
-    setProfileImage(null);
-    let uploadedImage = e.target.files[0];
-    console.log(uploadedImage);
+  // Get a reference to the storage service, which is used to create references in your storage bucket
+  const storage = getStorage();
 
-    if (!uploadedImage) {
-      setImageError("An image has not been uploaded.");
-      return;
-    }
+  // const handleFileChange = (e) => {
+  //   setProfileImage(null);
+  //   setUploadState("Uploading image");
+  //   let uploadedImage = e.target.files[0];
+  //   console.log(uploadedImage);
 
-    if (!uploadedImage.type.includes("image")) {
-      setImageError("This file is not an image type.");
-      return;
-    }
+  //   if (!uploadedImage) {
+  //     setFileUploaded(false);
+  //     setImageError("An image has not been uploaded.");
+  //     return;
+  //   }
 
-    if (!uploadedImage.size > 100000) {
-      setImageError("Image file size needs to be less than 100kb.");
-      return;
-    }
+  //   if (!uploadedImage.type.includes("image")) {
+  //     setFileUploaded(false);
+  //     setImageError("This file is not an image type.");
+  //     return;
+  //   }
 
-    setImageError(null);
-    setProfileImage(uploadedImage);
-    console.log("User profile image has been updated.");
-  };
+  //   if (!uploadedImage.size > 100000) {
+  //     setFileUploaded(false);
+  //     setImageError("Image file size needs to be less than 100kb.");
+  //     return;
+  //   }
+
+  //   setImageError(null);
+  //   setProfileImage(uploadedImage);
+  //   console.log("profileImage: ", profileImage);
+
+  //   // Create the file metadata
+  //   const metadata = {
+  //     contentType: "image/*",
+  //   };
+
+  //   // Create a storage reference from our storage service
+  //   const storageRef = ref(storage, "images/" + uploadedImage.name);
+
+  //   const uploadTask = uploadBytesResumable(
+  //     storageRef,
+  //     uploadedImage,
+  //     metadata
+  //   );
+  //   // Listen for state changes, errors, and completion of the upload.
+  //   uploadTask.on(
+  //     "state_changed",
+  //     (snapshot) => {
+  //       // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+  //       const progress = Math.floor(
+  //         (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+  //       );
+  //       setProgress(progress);
+  //       console.log("Upload is " + progress + "% done");
+  //       setFileUploaded(true);
+  //       if (progress === 100) {
+  //         setUploadState("Finished uploading");
+  //       }
+  //       switch (snapshot.state) {
+  //         case "paused":
+  //           console.log("Upload is paused");
+  //           break;
+  //         case "running":
+  //           console.log("Upload is running");
+  //           break;
+  //         default:
+  //           break;
+  //       }
+  //     },
+  //     (error) => {
+  //       // A full list of error codes is available at
+  //       // https://firebase.google.com/docs/storage/web/handle-errors
+  //       switch (error.code) {
+  //         case "storage/unauthorized":
+  //           // User doesn't have permission to access the object
+  //           setFileUploaded(false);
+  //           setImageError(error);
+  //           break;
+  //         case "storage/canceled":
+  //           // User canceled the upload
+  //           setFileUploaded(false);
+  //           setImageError(error);
+  //           break;
+  //         case "storage/unknown":
+  //           // Unknown error occurred, inspect error.serverResponse
+  //           setFileUploaded(false);
+  //           setImageError(error);
+  //           break;
+  //         default:
+  //           break;
+  //       }
+  //     },
+  //     () => {
+  //       // Upload completed successfully, now we can get the download URL
+  //       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+  //         console.log("File available at", downloadURL);
+  //         setProfileImageURL(downloadURL);
+  //       });
+  //     }
+  //   );
+  //   getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+  //     console.log("File available at", downloadURL);
+  //     setProfileImageURL(downloadURL);
+  //   });
+
+  //   console.log("User profile image has been updated.");
+  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    // setFileUploaded(false);
     signup(userName, emailAddress, password);
   };
 
@@ -221,10 +313,10 @@ const Register = () => {
               />
             </div>
           </div>
-          <div class="row">
+          {/* <div class="row">
             <div class="col-25">
               <label className="register-label" for="profile-picture">
-                Profile Picture
+                Profile Image
               </label>
             </div>
             <div class="col-75">
@@ -237,8 +329,22 @@ const Register = () => {
                 required
               />
             </div>
+            {fileUploaded && (
+              <label className="progress-bar">
+                {uploadState}:&nbsp;
+                <progress value={progress} max="100"></progress>
+                &nbsp;{progress}%
+              </label>
+            )}
+            {progress === 100 && (
+              <img
+                src={profileImageURL}
+                className="preview-image"
+                alt="user avatar"
+              />
+            )}
             {imageError && <div className="file-error">{imageError}</div>}
-          </div>
+          </div> */}
           <div className="row">
             <p className="sign-in">
               Already registered an account?&nbsp;

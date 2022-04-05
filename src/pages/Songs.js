@@ -32,7 +32,6 @@ import JustLife from "../songs/pakrap-14.mp3";
 
 const Songs = () => {
   const [currentLoggedUser, setCurrentLoggedUser] = useState(auth.currentUser);
-
   const [showSongList, setShowSongList] = useState(true);
   const [songs, setSongs] = useState([
     {
@@ -282,7 +281,13 @@ const Songs = () => {
         <strong className="title-logo">Pak's Raps</strong>
         <nav className="header-nav">
           <ul className="header-nav-list">
-            <li className="user">{currentLoggedUser.displayName}</li>
+            <li className="user">
+              <img
+                src="https://i3.lensdump.com/i/rGf54H.jpg"
+                className="profile-image"
+                alt="user avatar"
+              />
+            </li>
             <li>
               <label className="toggle-wrapper" htmlFor="toggle">
                 <div className={`toggle ${isEnabled ? "enabled" : "disabled"}`}>
@@ -363,8 +368,7 @@ const Songs = () => {
       <section className="list-section container">
         {showSongList && (
           <strong className="choose-song-text">
-            Hello {currentLoggedUser.displayName}, pick a rap to listen to and
-            see the lyrics.
+            Pick a rap to listen to and see the lyrics.
           </strong>
         )}
         <ol className="song-list">
