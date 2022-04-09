@@ -130,6 +130,13 @@ const Songs = () => {
   const isHidden = open ? true : false;
   const tabIndex = isHidden ? 0 : -1;
 
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownNode = useRef();
+
+  const isDropdownExpanded = dropdownOpen ? true : false;
+  const isDropdownHidden = dropdownOpen ? true : false;
+  const tabDropdownIndex = isDropdownHidden ? 0 : -1;
+
   const [isEnabled, setIsEnabled] = useState(false);
 
   // clicking on a song from song list
@@ -237,6 +244,9 @@ const Songs = () => {
   // closes burger menu when user clicks outside
   useOnClickOutside(node, () => setOpen(false));
 
+  // closes user dropdown menu when user clicks outside
+  useOnClickOutside(dropdownNode, () => setDropdownOpen(false));
+
   const { logout } = useLogOut();
 
   return (
@@ -281,12 +291,46 @@ const Songs = () => {
         <strong className="title-logo">Pak's Raps</strong>
         <nav className="header-nav">
           <ul className="header-nav-list">
-            <li className="user">
-              <img
-                src="https://i3.lensdump.com/i/rGf54H.jpg"
-                className="profile-image"
-                alt="user avatar"
-              />
+            <li className="user" ref={dropdownNode}>
+              <div
+                className="image-div"
+                aria-expanded={isDropdownExpanded}
+                dropdownOpen={dropdownOpen}
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+              >
+                <img
+                  src="https://i2.lensdump.com/i/rhYekk.jpg"
+                  className="profile-image"
+                  alt="user avatar"
+                />
+              </div>
+              {dropdownOpen && (
+                <div
+                  className="user-dropdown"
+                  dropdownOpen={dropdownOpen}
+                  aria-hidden={!isDropdownHidden}
+                >
+                  <ul className="dropdown-menu">
+                    <li className="dropdown-menu-option account-heading">
+                      Account
+                    </li>
+                    <hr />
+                    <li
+                      className="dropdown-menu-option"
+                      tabIndex={tabDropdownIndex}
+                    >
+                      Edit Profile
+                    </li>
+                    <li
+                      className="dropdown-menu-option"
+                      tabIndex={tabDropdownIndex}
+                      onClick={logout}
+                    >
+                      Log off
+                    </li>
+                  </ul>
+                </div>
+              )}
             </li>
             <li>
               <label className="toggle-wrapper" htmlFor="toggle">

@@ -423,6 +423,8 @@ html {
 
 .user {
   cursor: pointer;
+  /* margin: 0 2.4rem; */
+  position: relative;
 }
 
 .profile-image {
@@ -439,6 +441,37 @@ html {
 
 .song-title {
   font-size: 2rem;
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 100%;
+  left: -100%;
+  /* display: none; */
+  width: 9rem;
+  z-index: 2;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1.6rem 2.4rem 0.2rem rgba(0, 0, 0, 0.14);
+  background-color: #f8f9fa;
+  margin: 0.2rem auto;
+}
+
+.dropdown-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #212529;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.dropdown-menu-option {
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+}
+
+.account-heading {
+  cursor: default;
 }
 
 .song-lyrics {
