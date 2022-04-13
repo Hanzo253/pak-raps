@@ -1,26 +1,9 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import "../styles.css";
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { ThemeProvider } from "styled-components";
-import { theme } from "../theme";
-import FocusLock from "react-focus-lock";
-import { StyledBurger } from "../components/Burger/Burger.styled";
-import { StyledMenu } from "../components/Menu/Menu.styled";
-import { useOnClickOutside } from "../hooks";
-import { useLogin } from "../auth/useLogin";
-
-// firebase imports
-import { auth } from "../firebase/config";
-import { sendPasswordResetEmail } from "firebase/auth";
-
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { error, login } = useLogin();
-
+const EmailVerification = () => {
   const [open, setOpen] = useState(false);
   const node = useRef();
 
@@ -61,32 +44,11 @@ const Login = () => {
     }
   };
 
-  // closes burger menu when user clicks outside
-  useOnClickOutside(node, () => setOpen(false));
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    login(email, password);
-  };
-
-  // const passwordReset = () => {
-  //   sendPasswordResetEmail(auth, email)
-  //     .then(() => {
-  //       // Password reset email sent!
-  //       // ..
-  //       console.log("Password reset email sent.");
-  //     })
-  //     .catch((error) => {
-  //       this.error = error;
-  //       // ..
-  //     });
-  // };
-
   return (
-    <div className="login">
+    <div className="email-verification">
       <header className="header">
         {/* <ThemeProvider theme={theme}>
-          <div ref={node} className="burger-home-menu show">
+          <div ref={node} className="burger-home-menu">
             <FocusLock disabled={!open}>
               <StyledBurger
                 aria-label="Toggle menu"
@@ -99,11 +61,11 @@ const Login = () => {
                 <span />
               </StyledBurger>
               <StyledMenu open={open} aria-hidden={!isHidden}>
-                <Link to="/" tabIndex={tabIndex} className="nav-item">
-                  Home
-                </Link>
                 <Link to="/register" tabIndex={tabIndex} className="nav-item">
                   Register
+                </Link>
+                <Link to="/login" tabIndex={tabIndex} className="nav-item">
+                  Login
                 </Link>
               </StyledMenu>
             </FocusLock>
@@ -151,62 +113,27 @@ const Login = () => {
           </label>
         </nav>
       </header>
-      <section className="login-section">
-        <h1 className="heading">Login</h1>
-        <form onSubmit={handleSubmit} className="login-form">
-          <div class="row">
-            <div class="col-25">
-              <label className="login-label" for="email">
-                Email
-              </label>
-            </div>
-            <div class="col-75">
-              <input
-                type="email"
-                id="email"
-                name="email"
-                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-                onChange={(event) => setEmail(event.target.value)}
-                className="email-input"
-                required
-              />
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-25">
-              <label className="login-label" for="password">
-                Password&nbsp;(
-                <a href="#" className="forgot-password">
-                  Forgot password?
-                </a>
-                )
-              </label>
-            </div>
-            <div class="col-75">
-              <input
-                type="password"
-                id="password"
-                name="password"
-                onChange={(event) => setPassword(event.target.value)}
-                className="password-input"
-                required
-              />
-            </div>
-          </div>
-          <div className="row">
-            <p className="sign-up">
-              Don't have an account?&nbsp;
-              <Link to="/register" className="register-link">
-                Sign up here
-              </Link>
-            </p>
-          </div>
-          <input type="submit" value="Submit" className="submit-btn" />
-          {error && <p className="error-message">{error}</p>}
-        </form>
+      <section className="verification-message-section">
+        <h1 className="heading">Email Verification</h1>
+        <div className="message">
+          <h2 className="message-heading">
+            Thank you for registering for Pak's Raps!
+          </h2>
+          <p className="message-description">
+            An email verification link has been to your email address. Please
+            click on the link to verify your email address. Then, click on the
+            button below after your email has been successfully verified to sign
+            in at the login page.
+          </p>
+          <Link to="/login">
+            <button className="verified-button">
+              I have verified my email address
+            </button>
+          </Link>
+        </div>
       </section>
     </div>
   );
 };
 
-export default Login;
+export default EmailVerification;

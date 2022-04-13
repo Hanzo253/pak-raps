@@ -10,8 +10,8 @@ export const useLogOut = () => {
   const logout = () => {
     signOut(auth)
       .then(() => {
-        dispatch({ type: "LOGOUT" });
         navigate("/login", { replace: true });
+        dispatch({ type: "LOGOUT" });
       })
       .catch((err) => {
         console.log(err.message);

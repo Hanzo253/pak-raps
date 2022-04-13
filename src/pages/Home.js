@@ -8,7 +8,6 @@ import { theme } from "../theme";
 import FocusLock from "react-focus-lock";
 import { StyledBurger } from "../components/Burger/Burger.styled";
 import { StyledMenu } from "../components/Menu/Menu.styled";
-import { useOnClickOutside } from "../hooks";
 
 const Home = () => {
   const [open, setOpen] = useState(false);
@@ -50,9 +49,6 @@ const Home = () => {
       // document.querySelector("html").classList.remove("darkmode");
     }
   };
-
-  // closes burger menu when user clicks outside
-  useOnClickOutside(node, () => setOpen(false));
 
   return (
     <div className="home">

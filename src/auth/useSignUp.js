@@ -4,7 +4,11 @@ import { useNavigate } from "react-router-dom";
 
 // firebase imports
 import { auth } from "../firebase/config";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  updateProfile,
+  sendEmailVerification,
+} from "firebase/auth";
 
 export const useSignUp = (username, email, password) => {
   const [error, setError] = useState(null);
@@ -15,10 +19,9 @@ export const useSignUp = (username, email, password) => {
     setError(null);
     createUserWithEmailAndPassword(auth, email, password)
       .then((response) => {
-        dispatch({ type: "LOGIN", payload: response.user });
         updateProfile(auth.currentUser, {
           displayName: username,
-          photoURL: null,
+          photoURL: "https://i2.lensdump.com/i/rhYekk.jpg",
         })
           .then(() => {
             console.log("Username has been set.");
@@ -26,6 +29,14 @@ export const useSignUp = (username, email, password) => {
           .catch((error) => {
             setError(error.message);
           });
+        sendEmailVerification(auth.currentUser)
+          .then(() => {
+            console.log("Email verification sent.");
+          })
+          .catch((error) => {
+            setError(error.message);
+          });
+        // dispatch({ type: "LOGIN", payload: response.user });
         navigate("/songs", { replace: true });
       })
       .catch((err) => {

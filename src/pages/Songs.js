@@ -288,7 +288,7 @@ const Songs = () => {
             </FocusLock>
           </div>
         </ThemeProvider>
-        <strong className="title-logo">Pak's Raps</strong>
+        <strong className="title-logo logo">Pak's Raps</strong>
         <nav className="header-nav">
           <ul className="header-nav-list">
             <li className="user" ref={dropdownNode}>
@@ -299,7 +299,7 @@ const Songs = () => {
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               >
                 <img
-                  src="https://i2.lensdump.com/i/rhYekk.jpg"
+                  src={auth.currentUser.photoURL}
                   className="profile-image"
                   alt="user avatar"
                 />
