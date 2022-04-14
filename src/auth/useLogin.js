@@ -4,7 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 // firebase imports
 import { auth } from "../firebase/config";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 
 export const useLogin = (email, password) => {
   const [error, setError] = useState(null);
@@ -16,7 +19,22 @@ export const useLogin = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((response) => {
         dispatch({ type: "LOGIN", payload: response.user });
-        navigate("/songs", { replace: true });
+        if (auth.currentUser.emailVerified === true) {
+          navigate("/songs", { replace: true });
+        } else {
+          alert(
+            "Please verify your email address to login. Resending email verification link..."
+          );
+          sendEmailVerification(auth.currentUser)
+            .then(() => {
+              console.log("Email verification has been resent.");
+            })
+            .catch((error) => {
+              setError(
+                "Error resending email verification link, link might already be in your inbox."
+              );
+            });
+        }
       })
       .catch((err) => {
         setError(err.message);

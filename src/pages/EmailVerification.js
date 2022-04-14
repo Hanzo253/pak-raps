@@ -3,7 +3,13 @@ import "../styles.css";
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+// firebase imports
+import { auth } from "../firebase/config";
+import { sendEmailVerification } from "firebase/auth";
+
 const EmailVerification = () => {
+  const [error, setError] = useState(null);
+
   const [open, setOpen] = useState(false);
   const node = useRef();
 
@@ -42,6 +48,19 @@ const EmailVerification = () => {
       docEl.style.setProperty("--foreground", white);
       // document.querySelector("html").classList.remove("darkmode");
     }
+  };
+
+  const resendEmailLink = () => {
+    sendEmailVerification(auth.currentUser)
+      .then(() => {
+        setError(null);
+        alert("Email verification has been resent.");
+      })
+      .catch((error) => {
+        setError(
+          "Error resending email verification link, link might already be in your inbox."
+        );
+      });
   };
 
   return (
@@ -121,15 +140,18 @@ const EmailVerification = () => {
           </h2>
           <p className="message-description">
             An email verification link has been to your email address. Please
-            click on the link to verify your email address. Then, click on the
-            button below after your email has been successfully verified to sign
-            in at the login page.
+            click on the link to verify your email address. If you do not see it
+            in your email address inbox, click on the "Resend link" button
+            below. After your email address has been verified, then&nbsp;
+            <Link to="/login" className="verify-login-link">
+              login here
+            </Link>
+            .
           </p>
-          <Link to="/login">
-            <button className="verified-button">
-              I have verified my email address
-            </button>
-          </Link>
+          <button className="resend-button" onClick={() => resendEmailLink()}>
+            Resend link
+          </button>
+          {error && <p className="resend-error-message">{error}</p>}
         </div>
       </section>
     </div>

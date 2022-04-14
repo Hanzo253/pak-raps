@@ -424,7 +424,11 @@ html {
   line-height: 1.2;
 }
 
-.verified-button {
+.verify-login-link {
+  color: #364fc7;
+}
+
+.resend-button {
   display: block;
   outline: 0;
   border: 0;
@@ -437,7 +441,15 @@ html {
   color: white;
   line-height: 26px;
   /* margin: 2.4rem auto; */
-  margin: 2.4rem 3.2rem 3.2rem 3.2rem;
+  margin: 2.4rem 3.2rem 0 3.2rem;
+  z-index: 999;
+}
+
+.resend-error-message {
+  font-size: 2rem;
+  color: #c92a2a;
+  padding: 1.6rem 3.2rem;
+  font-weight: 700;
 }
 
 /***************************/

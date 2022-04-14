@@ -36,8 +36,8 @@ export const useSignUp = (username, email, password) => {
           .catch((error) => {
             setError(error.message);
           });
-        // dispatch({ type: "LOGIN", payload: response.user });
-        navigate("/songs", { replace: true });
+        dispatch({ type: "LOGIN", payload: response.user });
+        navigate("/emailverification", { replace: true });
       })
       .catch((err) => {
         setError(err.message);
