@@ -134,7 +134,7 @@ const EmailVerification = () => {
       </header>
       <section className="verification-message-section">
         <h1 className="heading">Email Verification</h1>
-        <div className="message">
+        <div className="verification-message">
           <h2 className="message-heading">
             Thank you for registering for Pak's Raps!
           </h2>
@@ -142,11 +142,11 @@ const EmailVerification = () => {
             An email verification link has been to your email address. Please
             click on the link to verify your email address. If you do not see it
             in your email address inbox, click on the "Resend link" button
-            below. After your email address has been verified, then&nbsp;
+            below. After your email address has been verified, then click&nbsp;
             <Link to="/login" className="verify-login-link">
-              login here
+              here
             </Link>
-            .
+            &nbsp;to login.
           </p>
           <button className="resend-button" onClick={() => resendEmailLink()}>
             Resend link

@@ -1,25 +1,15 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import "../styles.css";
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { ThemeProvider } from "styled-components";
-import { theme } from "../theme";
-import FocusLock from "react-focus-lock";
-import { StyledBurger } from "../components/Burger/Burger.styled";
-import { StyledMenu } from "../components/Menu/Menu.styled";
-import { useOnClickOutside } from "../hooks";
-import { useLogin } from "../auth/useLogin";
-
 // firebase imports
 import { auth } from "../firebase/config";
 import { sendPasswordResetEmail } from "firebase/auth";
 
-const Login = () => {
+const PasswordReset = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { error, login } = useLogin();
+  const [error, setError] = useState(null);
 
   const [open, setOpen] = useState(false);
   const node = useRef();
@@ -61,32 +51,26 @@ const Login = () => {
     }
   };
 
-  // closes burger menu when user clicks outside
-  useOnClickOutside(node, () => setOpen(false));
-
   const handleSubmit = (event) => {
+    setError(null);
     event.preventDefault();
-    login(email, password);
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        // Password reset email sent!
+        // ..
+        alert("Password reset link sent!");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setError(errorMessage);
+      });
   };
 
-  // const passwordReset = () => {
-  //   sendPasswordResetEmail(auth, email)
-  //     .then(() => {
-  //       // Password reset email sent!
-  //       // ..
-  //       console.log("Password reset email sent.");
-  //     })
-  //     .catch((error) => {
-  //       this.error = error;
-  //       // ..
-  //     });
-  // };
-
   return (
-    <div className="login">
+    <div className="passwordReset">
       <header className="header">
         {/* <ThemeProvider theme={theme}>
-          <div ref={node} className="burger-home-menu show">
+          <div ref={node} className="burger-home-menu">
             <FocusLock disabled={!open}>
               <StyledBurger
                 aria-label="Toggle menu"
@@ -99,11 +83,11 @@ const Login = () => {
                 <span />
               </StyledBurger>
               <StyledMenu open={open} aria-hidden={!isHidden}>
-                <Link to="/" tabIndex={tabIndex} className="nav-item">
-                  Home
-                </Link>
                 <Link to="/register" tabIndex={tabIndex} className="nav-item">
                   Register
+                </Link>
+                <Link to="/login" tabIndex={tabIndex} className="nav-item">
+                  Login
                 </Link>
               </StyledMenu>
             </FocusLock>
@@ -151,13 +135,23 @@ const Login = () => {
           </label>
         </nav>
       </header>
-      <section className="login-section">
-        <h1 className="heading">Login</h1>
-        <form onSubmit={handleSubmit} className="login-form">
-          <div class="row">
+      <section className="password-reset-section">
+        <h1 className="heading">Password Reset</h1>
+        <div className="reset-message">
+          <h2 className="message-heading">Forgot your password?</h2>
+          <p className="message-description">
+            Type in the email address that you use to log in, and a password
+            reset link will be sent to it. After your password has been reset,
+            click&nbsp;
+            <Link to="/login" className="verify-login-link">
+              here
+            </Link>
+            &nbsp;to login.
+          </p>
+          <form onSubmit={handleSubmit} className="password-reset-form">
             <div class="col-25">
-              <label className="login-label" for="email">
-                Email
+              <label className="message-description" for="email">
+                Email Address
               </label>
             </div>
             <div class="col-75">
@@ -167,48 +161,25 @@ const Login = () => {
                 name="email"
                 pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                 onChange={(event) => setEmail(event.target.value)}
-                className="email-input"
+                className="reset-email-input"
                 required
               />
             </div>
-          </div>
-          <div class="row">
-            <div class="col-25">
-              <label className="login-label" for="password">
-                Password&nbsp;(
-                <Link to="/passwordreset">
-                  <a href="#" className="forgot-password">
-                    Forgot password?
-                  </a>
-                </Link>
-                )
-              </label>
-            </div>
-            <div class="col-75">
-              <input
-                type="password"
-                id="password"
-                name="password"
-                onChange={(event) => setPassword(event.target.value)}
-                className="password-input"
-                required
-              />
-            </div>
-          </div>
-          <div className="row">
-            <p className="sign-up">
-              Don't have an account?&nbsp;
-              <Link to="/register" className="register-link">
-                Sign up here
-              </Link>
-            </p>
-          </div>
-          <input type="submit" value="Submit" className="submit-btn" />
-          {error && <p className="error-message">{error}</p>}
-        </form>
+            <input
+              type="submit"
+              value="Send Reset Link"
+              className="resend-button"
+            />
+          </form>
+          {error && <p className="resend-error-message">{error}</p>}
+          {/* <button className="resend-button" onClick={() => resendEmailLink()}>
+            Resend link
+          </button>
+          {error && <p className="resend-error-message">{error}</p>} */}
+        </div>
       </section>
     </div>
   );
 };
 
-export default Login;
+export default PasswordReset;
