@@ -7,6 +7,7 @@ import EmailVerification from "./pages/EmailVerification";
 import Login from "./pages/Login";
 import Songs from "./pages/Songs";
 import PasswordReset from "./pages/PasswordReset";
+import EditProfile from "./pages/EditProfile";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/passwordreset" element={<PasswordReset />}></Route>
           <Route path="/songs" element={<Songs />}></Route>
+          <Route path="/editprofile" element={<EditProfile />}></Route>
         </Routes>
       </div>
     </Router>

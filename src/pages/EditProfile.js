@@ -3,14 +3,7 @@ import "../styles.css";
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-// firebase imports
-import { auth } from "../firebase/config";
-import { sendPasswordResetEmail } from "firebase/auth";
-
-const PasswordReset = () => {
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState(null);
-
+const EditProfile = () => {
   const [open, setOpen] = useState(false);
   const node = useRef();
 
@@ -51,23 +44,8 @@ const PasswordReset = () => {
     }
   };
 
-  const handleSubmit = (event) => {
-    setError(null);
-    event.preventDefault();
-    sendPasswordResetEmail(auth, email)
-      .then(() => {
-        // Password reset email sent!
-        // ..
-        alert("Password reset link sent!");
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        setError(errorMessage);
-      });
-  };
-
   return (
-    <div className="password-reset">
+    <div className="edit-profile">
       <header className="header">
         {/* <ThemeProvider theme={theme}>
           <div ref={node} className="burger-home-menu">
@@ -135,51 +113,8 @@ const PasswordReset = () => {
           </label>
         </nav>
       </header>
-      <section className="password-reset-section">
-        <h1 className="heading">Password Reset</h1>
-        <div className="reset-message">
-          <h2 className="message-heading">Forgot your password?</h2>
-          <p className="message-description">
-            Type in the email address that you use to log in, and a password
-            reset link will be sent to it. After your password has been reset,
-            click&nbsp;
-            <Link to="/login" className="verify-login-link">
-              here
-            </Link>
-            &nbsp;to login.
-          </p>
-          <form onSubmit={handleSubmit} className="password-reset-form">
-            <div class="col-25">
-              <label className="message-description" for="email">
-                Email Address
-              </label>
-            </div>
-            <div class="col-75">
-              <input
-                type="email"
-                id="email"
-                name="email"
-                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-                onChange={(event) => setEmail(event.target.value)}
-                className="reset-email-input"
-                required
-              />
-            </div>
-            <input
-              type="submit"
-              value="Send Reset Link"
-              className="resend-button"
-            />
-          </form>
-          {error && <p className="resend-error-message">{error}</p>}
-          {/* <button className="resend-button" onClick={() => resendEmailLink()}>
-            Resend link
-          </button>
-          {error && <p className="resend-error-message">{error}</p>} */}
-        </div>
-      </section>
     </div>
   );
 };
 
-export default PasswordReset;
+export default EditProfile;

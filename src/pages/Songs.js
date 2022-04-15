@@ -5,6 +5,7 @@ import Lyrics from "../Lyrics";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import { useLogOut } from "../auth/useLogOut";
+import { Link } from "react-router-dom";
 
 import { ThemeProvider } from "styled-components";
 import { theme } from "../theme";
@@ -315,12 +316,14 @@ const Songs = () => {
                       Account
                     </li>
                     <hr />
-                    <li
-                      className="dropdown-menu-option"
-                      tabIndex={tabDropdownIndex}
-                    >
-                      Edit Profile
-                    </li>
+                    <Link to="/editprofile" className="edit-profile-link">
+                      <li
+                        className="dropdown-menu-option"
+                        tabIndex={tabDropdownIndex}
+                      >
+                        Edit Profile
+                      </li>
+                    </Link>
                     <li
                       className="dropdown-menu-option"
                       tabIndex={tabDropdownIndex}

@@ -544,6 +544,11 @@ html {
   border-width: 0.5rem;
 }
 
+.edit-profile-link {
+  text-decoration: none;
+  color: #212529;
+}
+
 /***************************/
 /* SONG LYRICS */
 /***************************/
