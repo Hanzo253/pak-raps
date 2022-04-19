@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles.css";
 import { useState, useRef, useEffect } from "react";
+import { useLogOut } from "../auth/useLogOut";
 import { Link } from "react-router-dom";
 
 import { ThemeProvider } from "styled-components";
@@ -8,14 +9,26 @@ import { theme } from "../theme";
 import FocusLock from "react-focus-lock";
 import { StyledBurger } from "../components/Burger/Burger.styled";
 import { StyledMenu } from "../components/Menu/Menu.styled";
+import { useOnClickOutside } from "../hooks";
+
+import { auth } from "../firebase/config";
 
 const Home = () => {
+  const [currentUser, setCurrentUser] = useState(auth.currentUser);
+
   const [open, setOpen] = useState(false);
   const node = useRef();
 
   const isExpanded = open ? true : false;
   const isHidden = open ? true : false;
   const tabIndex = isHidden ? 0 : -1;
+
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownNode = useRef();
+
+  const isDropdownExpanded = dropdownOpen ? true : false;
+  const isDropdownHidden = dropdownOpen ? true : false;
+  const tabDropdownIndex = isDropdownHidden ? 0 : -1;
 
   const [isEnabled, setIsEnabled] = useState(false);
 
@@ -50,10 +63,15 @@ const Home = () => {
     }
   };
 
+  // closes user dropdown menu when user clicks outside
+  useOnClickOutside(dropdownNode, () => setDropdownOpen(false));
+
+  const { logout } = useLogOut();
+
   return (
     <div className="home">
       <header className="header">
-        <ThemeProvider theme={theme}>
+        {/* <ThemeProvider theme={theme}>
           <div ref={node} className="burger-home-menu">
             <FocusLock disabled={!open}>
               <StyledBurger
@@ -76,26 +94,86 @@ const Home = () => {
               </StyledMenu>
             </FocusLock>
           </div>
-        </ThemeProvider>
+        </ThemeProvider> */}
         <Link to="/" className="title-logo">
           Pak's Raps
         </Link>
         <nav className="header-nav">
           <ul className="header-nav-list">
-            <li className="register-nav-item">
-              <Link
-                to="/register"
-                tabIndex={tabIndex}
-                className="header-nav-link"
-              >
-                Register
-              </Link>
-            </li>
-            <li className="login-nav-item">
-              <Link to="/login" tabIndex={tabIndex} className="header-nav-link">
-                Login
-              </Link>
-            </li>
+            {currentUser && (
+              <li className="user" ref={dropdownNode}>
+                <div
+                  className="image-div"
+                  aria-expanded={isDropdownExpanded}
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                >
+                  <img
+                    src={auth.currentUser.photoURL}
+                    className="profile-image"
+                    alt="user avatar"
+                  />
+                </div>
+                {dropdownOpen && (
+                  <div
+                    className="user-dropdown"
+                    dropdownOpen={dropdownOpen}
+                    aria-hidden={!isDropdownHidden}
+                  >
+                    <ul className="dropdown-menu">
+                      <li className="dropdown-menu-option account-heading">
+                        Account
+                      </li>
+                      <hr />
+                      <Link to="/editprofile" className="edit-profile-link">
+                        <li
+                          className="dropdown-menu-option"
+                          tabIndex={tabDropdownIndex}
+                        >
+                          Edit Profile
+                        </li>
+                      </Link>
+                      <Link to="/songs" className="edit-profile-link">
+                        <li
+                          className="dropdown-menu-option"
+                          tabIndex={tabDropdownIndex}
+                        >
+                          Song List
+                        </li>
+                      </Link>
+                      <li
+                        className="dropdown-menu-option"
+                        tabIndex={tabDropdownIndex}
+                        onClick={logout}
+                      >
+                        Log off
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </li>
+            )}
+            {!currentUser && (
+              <li className="register-nav-item">
+                <Link
+                  to="/register"
+                  tabIndex={tabIndex}
+                  className="header-nav-link"
+                >
+                  Register
+                </Link>
+              </li>
+            )}
+            {!currentUser && (
+              <li className="login-nav-item">
+                <Link
+                  to="/login"
+                  tabIndex={tabIndex}
+                  className="header-nav-link"
+                >
+                  Login
+                </Link>
+              </li>
+            )}
             <li>
               <label className="toggle-wrapper" htmlFor="toggle">
                 <div className={`toggle ${isEnabled ? "enabled" : "disabled"}`}>
