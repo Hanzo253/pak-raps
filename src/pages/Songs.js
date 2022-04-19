@@ -195,7 +195,7 @@ const Songs = () => {
         alert("Not part of the song list");
     }
 
-    // document.querySelector(".burger-menu").classList.add("show");
+    document.querySelector(".burger-menu").classList.add("show");
     // document.querySelector(".burger-logoff-menu").classList.remove("show");
   };
 
@@ -207,7 +207,7 @@ const Songs = () => {
     });
     setShowSongList(true);
     setOpen(!open);
-    // document.querySelector(".burger-menu").classList.remove("show");
+    document.querySelector(".burger-menu").classList.remove("show");
     // document.querySelector(".burger-logoff-menu").classList.add("show");
   };
 
@@ -254,7 +254,7 @@ const Songs = () => {
     <div className="songs">
       <header className="header">
         <ThemeProvider theme={theme}>
-          <div ref={node} className="burger-menu show">
+          <div ref={node} className="burger-menu">
             <FocusLock disabled={!open}>
               <StyledBurger
                 aria-label="Toggle menu"
@@ -277,26 +277,19 @@ const Songs = () => {
                     Song List
                   </p>
                 )}
-                <p
-                  href="/"
-                  tabIndex={tabIndex}
-                  onClick={logout}
-                  className="nav-item"
-                >
-                  Log off
-                </p>
               </StyledMenu>
             </FocusLock>
           </div>
         </ThemeProvider>
-        <strong className="title-logo logo">Pak's Raps</strong>
+        <Link to="/" className="title-logo logo">
+          Pak's Raps
+        </Link>
         <nav className="header-nav">
           <ul className="header-nav-list">
             <li className="user" ref={dropdownNode}>
               <div
                 className="image-div"
                 aria-expanded={isDropdownExpanded}
-                dropdownOpen={dropdownOpen}
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               >
                 <img
@@ -415,7 +408,8 @@ const Songs = () => {
       <section className="list-section container">
         {showSongList && (
           <strong className="choose-song-text">
-            Pick a rap to listen to and see the lyrics.
+            Welcome {auth.currentUser.displayName}, pick a rap to listen to and
+            see the lyrics.
           </strong>
         )}
         <ol className="song-list">

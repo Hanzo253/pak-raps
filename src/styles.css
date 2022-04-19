@@ -121,6 +121,27 @@ html {
   font-weight: 700;
 }
 
+.error-message {
+  font-size: 2rem;
+  color: #f03e3e;
+}
+
+.file-error {
+  color: #f03e3e;
+  background-color: #ffc9c9;
+  border: 2px solid #f03e3e;
+  border-radius: 3px;
+  padding: 1rem;
+  margin-top: 1rem;
+  font-size: 2rem;
+}
+
+.warning-message {
+  font-size: 2rem;
+  color: #fcc419;
+  margin-top: 1rem;
+}
+
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
 
@@ -376,16 +397,6 @@ html {
   border-style: outset; */
 }
 
-.file-error {
-  color: #f03e3e;
-  background-color: #ffc9c9;
-  border: 2px solid #f03e3e;
-  border-radius: 3px;
-  padding: 1rem;
-  margin-top: 1rem;
-  font-size: 2rem;
-}
-
 .forgot-password {
   color: #4da6a5;
   font-size: 1.6rem;
@@ -420,10 +431,6 @@ html {
   transition: all 0.1s ease;
   box-shadow: 0 0 0 0 #f8f9fa, 0 0 0 3px #56b8b7;
   color: #f8f9fa;
-}
-
-.error-message {
-  font-size: 2rem;
 }
 
 /* Clear floats after the columns */
@@ -617,4 +624,45 @@ html {
 
 .rhap_header {
   color: #212529;
+}
+
+/***************************/
+/* EDIT PROFILE */
+/***************************/
+
+.edit-profile-section {
+  height: 80vh;
+  margin-top: 8rem;
+}
+
+.edit-profile-form {
+  margin: 4.8rem auto;
+  width: 50%;
+}
+
+.edit-label {
+  display: inline-block;
+  font-size: 2rem;
+  margin: 2rem auto;
+}
+
+.save-btn {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 3px;
+  padding: 1.2rem 2.4rem;
+  border: 0;
+  color: #212529;
+  background: #56b8b7;
+  line-height: 1.15;
+  font-size: 1.6rem;
+  margin: 2rem auto;
+}
+
+.save-btn:hover {
+  transition: all 0.1s ease;
+  box-shadow: 0 0 0 0 #f8f9fa, 0 0 0 3px #56b8b7;
+  color: #f8f9fa;
 }
