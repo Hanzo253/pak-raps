@@ -512,7 +512,7 @@ html {
 
 .list-section {
   height: 100vh;
-  margin-top: 8rem;
+  padding-top: 8rem;
 }
 
 .choose-song-text {
