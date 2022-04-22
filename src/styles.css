@@ -657,11 +657,7 @@ html {
 .comment-date {
   font-size: 1.4rem;
   margin: 0 1rem;
-}
-
-.comment-date-two {
-  font-size: 1.4rem;
-  margin: 0 1rem;
+  color: var(--background);
 }
 
 .comment-content {}
@@ -685,7 +681,7 @@ html {
   height: 3.2rem;
   padding: 0 1.6rem;
   border-radius: 5rem;
-  background-color: #2222220d;
+  background-color: #dee2e6;
   color: #f03e3e;
   font-size: 1.2rem;
   font-weight: 700;
@@ -708,6 +704,8 @@ html {
   font-size: 1.6rem;
   font-weight: 500;
   white-space: pre-wrap;
+  border-radius: 0.5rem;
+  border: 0.2rem solid var(--foreground);
 }
 
 .rhap_header {
