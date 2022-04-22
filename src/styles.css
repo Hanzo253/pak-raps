@@ -604,16 +604,100 @@ html {
 
 .lyrics-page {
   white-space: pre-wrap;
-  padding-bottom: 20rem;
+  padding-bottom: 4.8rem;
+}
+
+/***************************/
+/* COMMENTS */
+/***************************/
+
+.comments-section {
+  min-height: 20vh;
+  padding: 3.2rem;
+}
+
+.comments-list {
+  list-style: none;
+  font-size: 2.4rem;
+}
+
+.comment {
+  padding: 1.6rem;
+  border-radius: 0.4rem;
+  border: 1px solid var(--foreground);
+  margin-top: 2rem;
+  box-shadow: 0.3rem 0.3rem 0.5rem rgba(0, 0, 0, 0.05);
+  background-color: var(--foreground);
+  color: var(--background);
+}
+
+.comment-author {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  color: #212529;
+  margin: 1rem auto;
+}
+
+.author-image {
+  border-color: #212529;
+  border-style: solid;
+  border-width: 0.2rem;
+}
+
+.author-name {
+  padding-left: 2rem;
+  color: var(--background);
+}
+
+.comment-date {
+  font-size: 1.4rem;
+  margin: 0 1rem;
+}
+
+.comment-date-two {
+  font-size: 1.4rem;
+  margin: 0 1rem;
+}
+
+.comment-content {}
+
+.comment-textarea {
+  font-size: 1.6rem;
+  font-weight: 700;
+  min-height: 4rem;
+  max-width: 100%;
+  letter-spacing: 1px;
+  padding: 1rem;
+  max-width: 100%;
+  line-height: 1.5;
+}
+
+.delete-comment {
+  display: inline-block;
+  outline: 0;
+  border: none;
+  cursor: pointer;
+  height: 3.2rem;
+  padding: 0 1.6rem;
+  border-radius: 5rem;
+  background-color: #2222220d;
+  color: #f03e3e;
+  font-size: 1.2rem;
+  font-weight: 700;
 }
 
 /***************************/
 /* MUSIC PLAYER */
 /***************************/
 
+.music-player-section {
+  min-height: 20vh;
+}
+
 .music-player {
-  position: fixed;
-  bottom: 0;
+  /* position: fixed;
+  bottom: 0; */
   text-align: center;
   z-index: 1;
   margin: auto;

@@ -1,14 +1,21 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { db } from "../firebase/config";
+import { useState, useEffect, useRef } from "react";
+import { database } from "../firebase/config";
 
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 
-const useCollection = (collectionDatabase) => {
+const useCollection = (collectionDatabase, commentsQuery) => {
   const [documents, setDocuments] = useState(null);
 
+  // set up query
+  const queries = useRef(commentsQuery).current;
+
   useEffect(() => {
-    let ref = collection(db, collectionDatabase);
+    let ref = collection(database, collectionDatabase);
+
+    if (queries) {
+      ref = query(ref, where(...queries));
+    }
 
     const unsub = onSnapshot(ref, (snapshot) => {
       let results = [];
@@ -18,7 +25,7 @@ const useCollection = (collectionDatabase) => {
       setDocuments(results);
     });
     return () => unsub();
-  }, [collectionDatabase]);
+  }, [collectionDatabase, queries]);
 
   return { documents };
 };
