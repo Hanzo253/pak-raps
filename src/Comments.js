@@ -79,7 +79,7 @@ const Comments = ({ songs, index, comments }) => {
 
   return (
     <section className="comments-section">
-      <h1 className="heading">Comments</h1>
+      <h1 className="heading-two">Comments</h1>
       {comments && (
         <ul className="comments-list">
           {comments.map(
