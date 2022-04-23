@@ -72,47 +72,43 @@ const Home = () => {
     <div className="home">
       <header className="header">
         <ThemeProvider theme={theme}>
-          {currentUser && (
-            <div ref={node} className="burger-home-menu show">
-              <FocusLock disabled={!open}>
-                <StyledBurger
-                  aria-label="Toggle menu"
-                  aria-expanded={isExpanded}
-                  open={open}
-                  onClick={() => setOpen(!open)}
-                >
-                  <span />
-                  <span />
-                  <span />
-                </StyledBurger>
-                <StyledMenu open={open} aria-hidden={!isHidden}>
-                  {!currentUser && (
-                    <Link
-                      to="/register"
-                      tabIndex={tabIndex}
-                      className="nav-item"
-                    >
-                      Register
-                    </Link>
-                  )}
-                  {!currentUser && (
-                    <Link to="/login" tabIndex={tabIndex} className="nav-item">
-                      Login
-                    </Link>
-                  )}
-                  {currentUser && (
-                    <Link to="/songs" tabIndex={tabIndex} className="nav-item">
-                      Songs
-                    </Link>
-                  )}
-                </StyledMenu>
-              </FocusLock>
-            </div>
-          )}
+          <div ref={node} className="burger-home-menu">
+            <FocusLock disabled={!open}>
+              <StyledBurger
+                aria-label="Toggle menu"
+                aria-expanded={isExpanded}
+                open={open}
+                onClick={() => setOpen(!open)}
+              >
+                <span />
+                <span />
+                <span />
+              </StyledBurger>
+              <StyledMenu open={open} aria-hidden={!isHidden}>
+                {!currentUser && (
+                  <Link to="/register" tabIndex={tabIndex} className="nav-item">
+                    Register
+                  </Link>
+                )}
+                {!currentUser && (
+                  <Link to="/login" tabIndex={tabIndex} className="nav-item">
+                    Login
+                  </Link>
+                )}
+                {currentUser && (
+                  <Link to="/songs" tabIndex={tabIndex} className="nav-item">
+                    Songs
+                  </Link>
+                )}
+              </StyledMenu>
+            </FocusLock>
+          </div>
         </ThemeProvider>
-        <Link to="/" className="title-logo logo">
-          Pak's Raps
-        </Link>
+        {!currentUser && (
+          <Link to="/" className="title-logo">
+            Pak's Raps
+          </Link>
+        )}
         <nav className="header-nav">
           <ul className="header-nav-list">
             {currentUser && (

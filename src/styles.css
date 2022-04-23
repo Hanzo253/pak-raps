@@ -425,7 +425,7 @@ html {
 /***************************/
 
 .verification-message-section {
-  height: 80vh;
+  min-height: 80vh;
   margin-top: 8rem;
 }
 
@@ -658,7 +658,7 @@ html {
   outline: 0;
   border: none;
   cursor: pointer;
-  height: 3.2rem;
+  min-height: 3.2rem;
   padding: 0 1.6rem;
   border-radius: 5rem;
   background-color: #dee2e6;
@@ -742,7 +742,11 @@ html {
 /***************************/
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 38em) {
+
+  html {
+    font-size: 50%;
+  }
 
   .col-25,
   .col-75,
@@ -770,5 +774,10 @@ html {
 
   .home-mobile-link {
     display: block;
+  }
+
+  .save-btn {
+    display: block;
+    margin: 3rem auto;
   }
 }
