@@ -151,7 +151,8 @@ const EmailVerification = () => {
           <button className="resend-button" onClick={() => resendEmailLink()}>
             Resend link
           </button>
-          {error && <p className="resend-error-message">{error}</p>}
+          {/* {error && <p className="resend-error-message">{error}</p>} */}
+          <p className="resend-error-message">{error}</p>
         </div>
       </section>
     </div>
