@@ -146,30 +146,6 @@ html {
   margin-top: 1rem;
 }
 
-/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-
-  .col-25,
-  .col-75,
-  input[type="submit"] {
-    width: 100%;
-    margin-top: 0;
-  }
-
-  .register-nav-item,
-  .login-nav-item {
-    display: none;
-  }
-
-  .burger-home-menu {
-    display: block;
-  }
-
-  .logo {
-    display: none;
-  }
-}
-
 /***************************/
 /* HEADER */
 /***************************/
@@ -560,6 +536,10 @@ html {
   color: #212529;
 }
 
+.home-link {
+  text-decoration: none;
+}
+
 /***************************/
 /* SONG LYRICS */
 /***************************/
@@ -751,4 +731,44 @@ html {
   transition: all 0.1s ease;
   box-shadow: 0 0 0 0 #f8f9fa, 0 0 0 3px #56b8b7;
   color: #f8f9fa;
+}
+
+.home-mobile-link {
+  display: none;
+}
+
+/***************************/
+/* QUERIES */
+/***************************/
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+
+  .col-25,
+  .col-75,
+  input[type="submit"] {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .register-nav-item,
+  .login-nav-item {
+    display: none;
+  }
+
+  .burger-home-menu {
+    display: block;
+  }
+
+  .burger-menu {
+    display: block;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .home-mobile-link {
+    display: block;
+  }
 }

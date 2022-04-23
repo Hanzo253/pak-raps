@@ -286,6 +286,13 @@ const Songs = () => {
                     Song List
                   </p>
                 )}
+                {showSongList && (
+                  <Link to="/" className="home-link">
+                    <p href="/" tabIndex={tabIndex} className="nav-item">
+                      Home
+                    </p>
+                  </Link>
+                )}
               </StyledMenu>
             </FocusLock>
           </div>

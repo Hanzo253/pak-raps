@@ -352,6 +352,11 @@ const EditProfile = () => {
                 <span />
               </StyledBurger>
               <StyledMenu open={open} aria-hidden={!isHidden}>
+                <Link to="/" className="home-link home-mobile-link">
+                  <p href="/" tabIndex={tabIndex} className="nav-item">
+                    Home
+                  </p>
+                </Link>
                 <p
                   href="/"
                   tabIndex={tabIndex}
@@ -364,7 +369,7 @@ const EditProfile = () => {
             </FocusLock>
           </div>
         </ThemeProvider>
-        <Link to="/" className="title-logo">
+        <Link to="/" className="title-logo logo">
           Pak's Raps
         </Link>
         <nav className="header-nav">

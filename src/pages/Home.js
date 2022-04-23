@@ -71,31 +71,46 @@ const Home = () => {
   return (
     <div className="home">
       <header className="header">
-        {/* <ThemeProvider theme={theme}>
-          <div ref={node} className="burger-home-menu">
-            <FocusLock disabled={!open}>
-              <StyledBurger
-                aria-label="Toggle menu"
-                aria-expanded={isExpanded}
-                open={open}
-                onClick={() => setOpen(!open)}
-              >
-                <span />
-                <span />
-                <span />
-              </StyledBurger>
-              <StyledMenu open={open} aria-hidden={!isHidden}>
-                <Link to="/register" tabIndex={tabIndex} className="nav-item">
-                  Register
-                </Link>
-                <Link to="/login" tabIndex={tabIndex} className="nav-item">
-                  Login
-                </Link>
-              </StyledMenu>
-            </FocusLock>
-          </div>
-        </ThemeProvider> */}
-        <Link to="/" className="title-logo">
+        <ThemeProvider theme={theme}>
+          {currentUser && (
+            <div ref={node} className="burger-home-menu show">
+              <FocusLock disabled={!open}>
+                <StyledBurger
+                  aria-label="Toggle menu"
+                  aria-expanded={isExpanded}
+                  open={open}
+                  onClick={() => setOpen(!open)}
+                >
+                  <span />
+                  <span />
+                  <span />
+                </StyledBurger>
+                <StyledMenu open={open} aria-hidden={!isHidden}>
+                  {!currentUser && (
+                    <Link
+                      to="/register"
+                      tabIndex={tabIndex}
+                      className="nav-item"
+                    >
+                      Register
+                    </Link>
+                  )}
+                  {!currentUser && (
+                    <Link to="/login" tabIndex={tabIndex} className="nav-item">
+                      Login
+                    </Link>
+                  )}
+                  {currentUser && (
+                    <Link to="/songs" tabIndex={tabIndex} className="nav-item">
+                      Songs
+                    </Link>
+                  )}
+                </StyledMenu>
+              </FocusLock>
+            </div>
+          )}
+        </ThemeProvider>
+        <Link to="/" className="title-logo logo">
           Pak's Raps
         </Link>
         <nav className="header-nav">
@@ -130,14 +145,6 @@ const Home = () => {
                           tabIndex={tabDropdownIndex}
                         >
                           Edit Profile
-                        </li>
-                      </Link>
-                      <Link to="/songs" className="edit-profile-link">
-                        <li
-                          className="dropdown-menu-option"
-                          tabIndex={tabDropdownIndex}
-                        >
-                          Song List
                         </li>
                       </Link>
                       <li
