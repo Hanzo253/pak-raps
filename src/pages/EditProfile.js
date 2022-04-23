@@ -514,7 +514,7 @@ const EditProfile = () => {
           )}
         </form>
         <form onSubmit={editProfilePictureSubmit} className="edit-profile-form">
-          <h2 className="heading">Edit Profile Picture</h2>
+          <h2 className="heading">Edit User Avatar</h2>
           <div class="row">
             <div class="col-25">
               <label className="edit-label" for="profile-picture">
