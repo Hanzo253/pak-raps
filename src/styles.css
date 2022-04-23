@@ -800,4 +800,8 @@ html {
   .warning-message {
     margin: 2rem auto;
   }
+
+  .delete-comment {
+    padding: 0 1.2rem
+  }
 }
