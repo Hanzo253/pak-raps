@@ -156,7 +156,6 @@ const Comments = ({ songs, index, comments }) => {
               className="comment-textarea"
               onChange={(e) => setNewComment(e.target.value)}
               value={newComment}
-              placeholder="Add a comment..."
               onKeyPress={(event) => submitComment(event)}
               required
             ></textarea>
