@@ -13,7 +13,6 @@ import {
   doc,
 } from "firebase/firestore";
 // import useCollection from "./useCollection/useCollection";
-import Comment from "./Comment";
 
 const Comments = ({ songs, index, comments }) => {
   // const { documents } = useCollection("comments", [
@@ -86,7 +85,31 @@ const Comments = ({ songs, index, comments }) => {
             (comment) =>
               comment.commentId === songs[index - 1].id && (
                 <li key={comment.id} className="comment">
-                  <div className="comment-author">
+                  <img
+                    src={comment.userImage}
+                    className="profile-image author-image"
+                    alt="user avatar"
+                  />
+                  <div className="comment-information">
+                    <div className="date-and-author">
+                      <p className="author-name">{comment.userName}</p>
+                      <p className="comment-date">
+                        {formatDistanceToNow(comment.timeCreated.toDate(), {
+                          addSuffix: true,
+                        })}
+                      </p>
+                      {comment.uid === auth.currentUser.uid && (
+                        <button
+                          className="delete-comment"
+                          onClick={() => deleteComment(comment.id)}
+                        >
+                          Delete comment
+                        </button>
+                      )}
+                    </div>
+                    <div className="comment-content">{comment.description}</div>
+                  </div>
+                  {/* <div className="comment-author">
                     <img
                       src={comment.userImage}
                       className="profile-image author-image"
@@ -106,8 +129,13 @@ const Comments = ({ songs, index, comments }) => {
                         Delete comment
                       </button>
                     )}
-                  </div>
-                  <div className="comment-content">{comment.description}</div>
+                  </div> */}
+                  {/* <p className="comment-date">
+                    {formatDistanceToNow(comment.timeCreated.toDate(), {
+                      addSuffix: true,
+                    })}
+                  </p> */}
+                  {/* <div className="comment-content">{comment.description}</div> */}
                 </li>
               )
           )}

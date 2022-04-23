@@ -612,6 +612,12 @@ html {
   box-shadow: 0.3rem 0.3rem 0.5rem rgba(0, 0, 0, 0.05);
   background-color: var(--foreground);
   color: var(--background);
+  display: flex;
+}
+
+.comment-information {
+  display: flex;
+  flex-direction: column;
 }
 
 .comment-author {
@@ -626,6 +632,8 @@ html {
   border-color: #212529;
   border-style: solid;
   border-width: 0.2rem;
+  width: 5rem;
+  height: 5rem;
 }
 
 .author-name {
@@ -633,13 +641,23 @@ html {
   color: var(--background);
 }
 
+.date-and-author {
+  display: flex;
+}
+
 .comment-date {
   font-size: 1.4rem;
-  margin: 0 1rem;
+  /* margin: 0 1rem; */
+  margin: 0.5rem 1rem;
   color: var(--background);
 }
 
-.comment-content {}
+.comment-content {
+  /* margin: 1rem; */
+  padding-left: 2rem;
+  margin-top: 1rem;
+  color: var(--background);
+}
 
 .comment-textarea {
   font-size: 1.6rem;
