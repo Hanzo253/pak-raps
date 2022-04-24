@@ -652,6 +652,13 @@ html {
   color: var(--background);
 }
 
+.comment-mobile-date {
+  font-size: 1.4rem;
+  margin: 0.5rem 2rem;
+  color: var(--background);
+  display: none;
+}
+
 .comment-content {
   /* margin: 1rem; */
   padding-left: 2rem;
@@ -802,7 +809,8 @@ html {
   }
 
   .delete-comment {
-    padding: 0 1.2rem
+    padding: 0 1.2rem;
+    margin: 0 1.2rem;
   }
 
   .reset-password-submit {
@@ -816,5 +824,13 @@ html {
 
   .message-label {
     font-size: 1.6rem;
+  }
+
+  .comment-date {
+    display: none;
+  }
+
+  .comment-mobile-date {
+    display: block;
   }
 }

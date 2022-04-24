@@ -41,6 +41,8 @@ export const useSignUp = (username, email, password) => {
       })
       .catch((err) => {
         setError(err.message);
+        switch (error.code) {
+        }
       });
   };
 
