@@ -40,8 +40,16 @@ export const useSignUp = (username, email, password) => {
         navigate("/emailverification", { replace: true });
       })
       .catch((err) => {
-        setError(err.message);
-        switch (error.code) {
+        // setError(err.message);
+        switch (err.code) {
+          case "auth/weak-password":
+            setError("Password should be at least 6 characters");
+            break;
+          case "auth/email-already-in-use":
+            setError("An account with this email already exists");
+            break;
+          default:
+            break;
         }
       });
   };

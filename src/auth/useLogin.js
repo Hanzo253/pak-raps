@@ -38,6 +38,16 @@ export const useLogin = (email, password) => {
       })
       .catch((err) => {
         setError(err.message);
+        switch (err.code) {
+          case "auth/user-not-found":
+            setError("This user does not exists");
+            break;
+          case "auth/wrong-password":
+            setError("The password you entered is incorrect");
+            break;
+          default:
+            break;
+        }
       });
   };
 

@@ -721,8 +721,9 @@ html {
 /***************************/
 
 .edit-profile-section {
-  height: 80vh;
+  height: 100vh;
   margin-top: 8rem;
+  margin-bottom: 8rem;
 }
 
 .edit-profile-form {

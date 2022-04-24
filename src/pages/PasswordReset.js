@@ -61,8 +61,15 @@ const PasswordReset = () => {
         alert("Password reset link sent!");
       })
       .catch((error) => {
-        const errorMessage = error.message;
-        setError(errorMessage);
+        // const errorMessage = error.message;
+        // setError(errorMessage);
+        switch (error.code) {
+          case "auth/user-not-found":
+            setError("This user does not exists");
+            break;
+          default:
+            break;
+        }
       });
   };
 

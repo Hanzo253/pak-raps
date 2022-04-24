@@ -317,15 +317,25 @@ const EditProfile = () => {
         })
         .catch((error) => {
           setEditPasswordError(error.message);
-          alert("Login expired, please relog and try again.");
-          reauthenticateWithCredential(auth.currentUser, promptForCredentials())
-            .then(() => {
-              // User re-authenticated.
-            })
-            .catch((error) => {
-              // An error ocurred
-              // ...
-            });
+          switch (error.code) {
+            case "auth/weak-password":
+              setEditPasswordError("Password should be at least 6 characters");
+              break;
+            default:
+              alert("Login expired, please relog and try again.");
+              reauthenticateWithCredential(
+                auth.currentUser,
+                promptForCredentials()
+              )
+                .then(() => {
+                  // User re-authenticated.
+                })
+                .catch((error) => {
+                  // An error ocurred
+                  // ...
+                });
+              break;
+          }
         });
     }
     document.querySelector(".password-input").value = "";
@@ -597,9 +607,10 @@ const EditProfile = () => {
             </div>
           </div>
           <input type="submit" value="Save" className="save-btn" />
-          {editPasswordError && (
+          {/* {editPasswordError && (
             <p className="error-message">{editPasswordError}</p>
-          )}
+          )} */}
+          <p className="error-message">{editPasswordError}</p>
         </form>
       </section>
     </div>
