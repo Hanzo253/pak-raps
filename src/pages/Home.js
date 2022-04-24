@@ -104,13 +104,27 @@ const Home = () => {
             </FocusLock>
           </div>
         </ThemeProvider>
-        {!currentUser && (
-          <Link to="/" className="title-logo">
+        {/* {!currentUser && (
+          <Link to="/" className="title-logo logo">
             Pak's Raps
           </Link>
-        )}
+        )} */}
+        <Link to="/" className="title-logo logo">
+          Pak's Raps
+        </Link>
         <nav className="header-nav">
           <ul className="header-nav-list">
+            {currentUser && (
+              <li className="songs-nav-item">
+                <Link
+                  to="/songs"
+                  tabIndex={tabIndex}
+                  className="header-nav-link"
+                >
+                  Songs
+                </Link>
+              </li>
+            )}
             {currentUser && (
               <li className="user" ref={dropdownNode}>
                 <div

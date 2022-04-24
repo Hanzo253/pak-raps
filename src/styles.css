@@ -785,7 +785,8 @@ html {
   }
 
   .register-nav-item,
-  .login-nav-item {
+  .login-nav-item,
+  .songs-nav-item {
     display: none;
   }
 
