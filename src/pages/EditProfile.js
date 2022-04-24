@@ -486,9 +486,9 @@ const EditProfile = () => {
         </nav>
       </header>
       <section className="edit-profile-section">
-        {/* <h1 className="heading">Edit Profile</h1> */}
+        <h1 className="heading">Edit Profile</h1>
         <form onSubmit={editUsernameSubmit} className="edit-profile-form">
-          <h2 className="heading">Edit Username</h2>
+          {/* <h2 className="heading">Edit Username</h2> */}
           <div class="row">
             <div class="col-25">
               <label className="edit-label" for="user-name">
@@ -514,7 +514,7 @@ const EditProfile = () => {
           )}
         </form>
         <form onSubmit={editProfilePictureSubmit} className="edit-profile-form">
-          <h2 className="heading">Edit User Avatar</h2>
+          {/* <h2 className="heading">Edit User Avatar</h2> */}
           <div class="row">
             <div class="col-25">
               <label className="edit-label" for="profile-picture">
@@ -552,7 +552,7 @@ const EditProfile = () => {
           )}
         </form>
         <form onSubmit={editEmailSubmit} className="edit-profile-form">
-          <h2 className="heading">Edit Email</h2>
+          {/* <h2 className="heading">Edit Email</h2> */}
           <div class="row">
             <div class="col-25">
               <label className="edit-label" for="email">
@@ -578,7 +578,7 @@ const EditProfile = () => {
           {editEmailError && <p className="error-message">{editEmailError}</p>}
         </form>
         <form onSubmit={editPasswordSubmit} className="edit-profile-form">
-          <h2 className="heading">Edit Password</h2>
+          {/* <h2 className="heading">Edit Password</h2> */}
           <div class="row">
             <div class="col-25">
               <label className="edit-label" for="password">

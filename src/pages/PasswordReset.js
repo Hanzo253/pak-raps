@@ -139,7 +139,7 @@ const PasswordReset = () => {
         <h1 className="heading">Password Reset</h1>
         <div className="reset-message">
           <h2 className="message-heading">Forgot your password?</h2>
-          <p className="message-description">
+          <p className="message-description reset-description">
             Type in the email address that you use to log in, and a password
             reset link will be sent to it. After your password has been reset,
             click&nbsp;
@@ -150,7 +150,7 @@ const PasswordReset = () => {
           </p>
           <form onSubmit={handleSubmit} className="password-reset-form">
             <div class="col-25">
-              <label className="message-description" for="email">
+              <label className="message-label" for="email">
                 Email Address
               </label>
             </div>
@@ -168,10 +168,11 @@ const PasswordReset = () => {
             <input
               type="submit"
               value="Send Reset Link"
-              className="resend-button"
+              className="resend-button reset-password-submit"
             />
           </form>
-          {error && <p className="resend-error-message">{error}</p>}
+          {/* {error && <p className="resend-error-message">{error}</p>} */}
+          <p className="resend-error-message">{error}</p>
           {/* <button className="resend-button" onClick={() => resendEmailLink()}>
             Resend link
           </button>

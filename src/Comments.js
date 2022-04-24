@@ -107,6 +107,11 @@ const Comments = ({ songs, index, comments }) => {
                         </button>
                       )}
                     </div>
+                    {/* <p className="comment-mobile-date">
+                      {formatDistanceToNow(comment.timeCreated.toDate(), {
+                        addSuffix: true,
+                      })}
+                    </p> */}
                     <div className="comment-content">{comment.description}</div>
                   </div>
                   {/* <div className="comment-author">
